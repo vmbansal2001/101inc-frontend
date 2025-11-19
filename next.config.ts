@@ -1,9 +1,25 @@
 import withPWA from "next-pwa";
+import withSVGR from "next-svgr";
 
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*",
+      },
+    ],
+  },
 };
 
 const pwaConfig = withPWA({
@@ -13,4 +29,6 @@ const pwaConfig = withPWA({
   // disable: process.env.NODE_ENV === "development",
 }) as (config: NextConfig) => NextConfig;
 
-export default pwaConfig(nextConfig);
+const svgrConfig = withSVGR as (config: NextConfig) => NextConfig;
+
+export default svgrConfig(pwaConfig(nextConfig));
