@@ -9,15 +9,17 @@ export const usersApi = baseApi.injectEndpoints({
         url: `/api/v1/users/by-email`,
         params: { email },
       }),
+      providesTags: ["Users"],
       // transformResponse: (response) => candidateTransformer(response),
     }),
 
     postUserData: builder.mutation<any | null, { body: any }>({
       query: ({ body }) => ({
-        url: `/api/v1/users`,
+        url: `/api/v1/users/`,
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Users"],
     }),
   }),
 });
