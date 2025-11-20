@@ -4,6 +4,7 @@ import withSVGR from "next-svgr";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: false,
   turbopack: {
     rules: {
       "*.svg": {

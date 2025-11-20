@@ -41,12 +41,11 @@ const useAuthenticator = () => {
         photoURL: user.photoURL,
       };
 
-      console.log("userToDispatch", userToDispatch);
-
       await fetchUserDetails(user);
 
-      dispatch(setAuthFirebaseLoading(false));
       dispatch(setAuthUser(userToDispatch));
+      dispatch(setAuthFirebaseLoading(false));
+      dispatch(setAuthUserLoading(false));
     } else {
       dispatch(setAuthFirebaseLoading(false));
       dispatch(setAuthUser(null));

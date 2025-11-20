@@ -1,8 +1,30 @@
-import React from "react";
+"use client";
+
+import { useAppSelector } from "@/src/store/hooks";
 import LoginContainer from "./login-container";
 import Image from "next/image";
+import { MoonLoader } from "react-spinners";
+import useUserData from "../use-user-data/use-user-data";
+import OnboardingStepOne from "./onboarding-step-one/onborading-step-one";
 
 const LoginPage = () => {
+  const { userLoading, currentUser } = useAppSelector(
+    (state) => state.authState
+  );
+
+  const { userData } = useUserData();
+
+  const renderContent = () => {
+    if (userLoading) {
+      return <MoonLoader color="#fff" className="z-10" />;
+    }
+    if (!currentUser) {
+      return <LoginContainer />;
+    }
+
+    return <OnboardingStepOne currentUser={currentUser} />;
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="absolute top-0 left-0 w-full h-full">
@@ -16,7 +38,7 @@ const LoginPage = () => {
         <div className="absolute inset-0 bg-linear-to-br from-red-900/80 via-rose-800/75 to-slate-900/80" />
       </div>
 
-      <LoginContainer />
+      {renderContent()}
     </div>
   );
 };

@@ -2,8 +2,6 @@
 
 import baseApi from "../base-api";
 
-// curl --location --request GET 'http://localhost:8000/api/v1/users/by-email?email=shailesh.bhattarai148@gmail.com'
-
 export const usersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserByEmail: builder.query<any | null, { email: string }>({
@@ -14,19 +12,18 @@ export const usersApi = baseApi.injectEndpoints({
       // transformResponse: (response) => candidateTransformer(response),
     }),
 
-    // postMenteeData: builder.mutation<
-    //   PostMenteeDataRequest,
-    //   PostMenteeDataRequest
-    // >({
-    //   query: ({ body, params }) => ({
-    //     method: "POST",
-    //     url: "/candidates/profile",
-    //     body,
-    //     params,
-    //   }),
-    //   invalidatesTags: ["Candidates"],
-    // }),
+    postUserData: builder.mutation<any | null, { body: any }>({
+      query: ({ body }) => ({
+        url: `/api/v1/users`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserByEmailQuery, useLazyGetUserByEmailQuery } = usersApi;
+export const {
+  useGetUserByEmailQuery,
+  useLazyGetUserByEmailQuery,
+  usePostUserDataMutation,
+} = usersApi;
