@@ -49,7 +49,7 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
     console.log("Calling fetchMechanicServices");
     const fetchMechanicServices = async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/service_types`
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/service_types/`
       );
       const data = await response.json();
       setMechanicServices(data);
