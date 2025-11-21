@@ -3,6 +3,8 @@ import { HardHat, User, Wrench } from "lucide-react";
 import { useEffect, useState } from "react";
 import Button from "../../buttons/common-button";
 import useUserData from "../../use-user-data/use-user-data";
+import ServiceType from "@/src/types/service-type/ServiceType";
+import { useGetServiceTypesQuery } from "@/src/services/service-types/service-types.query";
 
 type StepOneFormData = {
   name: string;
@@ -11,21 +13,12 @@ type StepOneFormData = {
   mechanicServices: number[];
 };
 
-type MechanicService = {
-  id: number;
-  category_id: number;
-  name: string;
-  description: string;
-};
-
 type Props = {
   currentUser: AuthUser;
 };
 
 const OnboardingStepOne = ({ currentUser }: Props) => {
-  const [mechanicServices, setMechanicServices] = useState<MechanicService[]>(
-    []
-  );
+  const { data: mechanicServices } = useGetServiceTypesQuery();
 
   const [formData, setFormData] = useState<StepOneFormData>({
     name: "",
@@ -45,17 +38,17 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
 
   const { updateUserData } = useUserData();
 
-  useEffect(() => {
-    console.log("Calling fetchMechanicServices");
-    const fetchMechanicServices = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/service_types/`
-      );
-      const data = await response.json();
-      setMechanicServices(data);
-    };
-    fetchMechanicServices();
-  }, []);
+  // useEffect(() => {
+  //   console.log("Calling fetchMechanicServices");
+  //   const fetchMechanicServices = async () => {
+  //     const response = await fetch(
+  //       `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/service_types/`
+  //     );
+  //     const data = await response.json();
+  //     setMechanicServices(data);
+  //   };
+  //   fetchMechanicServices();
+  // }, []);
 
   const clearFormErrors = () => {
     setFormErrors({
@@ -108,8 +101,6 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
     };
 
     await updateUserData(updationPayloadBody);
-
-    setButtonLoading(false);
   };
 
   const handleServiceSelection = (serviceId: number) => {
@@ -224,7 +215,7 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
               Services you offer
             </p>
             <div className="grid grid-cols-1 gap-2">
-              {mechanicServices.map((service) => (
+              {mechanicServices?.map((service) => (
                 <button
                   key={service.id}
                   className={`w-full rounded-md py-2 px-3 text-sm text-left border hover:shadow-md transition-all duration-200 cursor-pointer ${

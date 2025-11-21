@@ -1,11 +1,9 @@
 "use client";
 
+import CustomerDashboard from "@/src/components/customer-dashboard/customer-dashboard";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import React from "react";
 
-type Props = {};
-
-const IndexRoute = (props: Props) => {
+const IndexRoute = () => {
   const { userData } = useUserData();
 
   if (userData.role === "MECHANIC") {
@@ -17,11 +15,7 @@ const IndexRoute = (props: Props) => {
   }
 
   if (userData.role === "CUSTOMER") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Customer Dashboard
-      </div>
-    );
+    return <CustomerDashboard />;
   }
 
   if (userData.role === "ADMIN") {
