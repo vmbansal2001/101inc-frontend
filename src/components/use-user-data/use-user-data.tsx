@@ -23,7 +23,7 @@ const useUserData = () => {
   };
 
   return {
-    userData,
+    userData: userData!,
     isUserQueryLoading,
     updateUserData,
   };
