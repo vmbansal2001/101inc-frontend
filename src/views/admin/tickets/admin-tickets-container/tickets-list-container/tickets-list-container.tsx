@@ -144,11 +144,11 @@ const TicketsListContainer = ({ tickets }: Props) => {
             return (
               <li
                 key={ticket.id}
-                className="py-3 md:py-3.5 grid gap-3 md:gap-4 md:grid-cols-[minmax(0,0.6fr)_minmax(0,1.6fr)_minmax(0,2.1fr)_minmax(0,1.2fr)] md:rounded-lg md:px-2 md:hover:bg-slate-50/80 md:transition-colors"
+                className="py-8 md:py-3.5 grid gap-3 md:gap-4 md:grid-cols-[minmax(0,0.6fr)_minmax(0,1.6fr)_minmax(0,2.1fr)_minmax(0,1.2fr)] md:rounded-lg md:px-2 md:hover:bg-slate-50/80 md:transition-colors"
               >
                 {/* Ticket ID + requested date (mobile also shows status here) */}
                 <section className="grid gap-1 md:gap-1.5">
-                  <div className="grid grid-cols-[minmax(0,1fr),auto] items-center gap-2 md:block">
+                  <div className="flex justify-between items-center gap-2 md:block">
                     <div>
                       <p className="md:hidden text-[11px] font-semibold uppercase tracking-wide text-gray-500">
                         Ticket ID
