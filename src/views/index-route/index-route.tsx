@@ -1,10 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import CustomerDashboard from "@/src/views/index-route/customer-dashboard/customer-dashboard";
 import useUserData from "@/src/components/use-user-data/use-user-data";
 
 const IndexRoute = () => {
   const { userData } = useUserData();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (userData.role === "ADMIN") {
+      router.replace("/admin/tickets");
+    }
+  }, [userData.role, router]);
 
   if (userData.role === "MECHANIC") {
     return (
@@ -19,11 +29,7 @@ const IndexRoute = () => {
   }
 
   if (userData.role === "ADMIN") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Admin Dashboard
-      </div>
-    );
+    return null;
   }
 
   return (
