@@ -9,6 +9,13 @@ import {
 
 export const ticketsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getAllTickets: builder.query<Ticket[] | null, void>({
+      query: () => ({
+        url: `/api/v1/tickets/all`,
+      }),
+      providesTags: ["Tickets"],
+      transformResponse: (response: any) => ticketsTransformer(response),
+    }),
     getTicketById: builder.query<Ticket | null, { ticket_id: number }>({
       query: ({ ticket_id }) => ({
         url: `/api/v1/tickets/id`,
@@ -42,4 +49,6 @@ export const {
   useLazyGetTicketsByUserIdQuery,
   useGetTicketByIdQuery,
   useLazyGetTicketByIdQuery,
+  useGetAllTicketsQuery,
+  useLazyGetAllTicketsQuery,
 } = ticketsApi;
