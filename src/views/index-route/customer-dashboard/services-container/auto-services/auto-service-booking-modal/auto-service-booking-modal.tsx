@@ -1,6 +1,13 @@
 import SheetModal from "@/src/components/modals/sheet-modal";
 import ServiceType from "@/src/types/service-type/ServiceType";
-import AutoServiceBookingModalContainer from "./auto-service-booking-modal-container";
+import dynamic from "next/dynamic";
+
+const AutoServiceBookingModalContainer = dynamic(
+  () => import("./auto-service-booking-modal-container"),
+  {
+    ssr: false,
+  }
+);
 
 type Props = {
   open: boolean;

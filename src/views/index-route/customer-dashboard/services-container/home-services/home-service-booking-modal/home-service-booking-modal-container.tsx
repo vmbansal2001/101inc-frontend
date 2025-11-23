@@ -1,15 +1,14 @@
-import { useState } from "react";
 import ServiceType from "@/src/types/service-type/ServiceType";
-import IssueCategorySelector from "./issue-category-selector";
+import { useState } from "react";
+import useServiceBookingHandler from "../../use-service-booking-handler";
 import Button from "@/src/components/buttons/common-button";
-import useServiceBookingHandler from "../use-service-booking-handler";
 
 type Props = {
   serviceType: ServiceType;
   handleClose: () => void;
 };
 
-const AutoServiceBookingModalContainer = ({
+const HomeServiceBookingModalContainer = ({
   serviceType,
   handleClose,
 }: Props) => {
@@ -18,51 +17,25 @@ const AutoServiceBookingModalContainer = ({
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    issueCategories: [] as string[],
     issueDescription: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    issueCategories: "",
     issueDescription: "",
   });
 
-  const handleIssueCategoryChange = (value: string) => {
-    if (formData.issueCategories.includes(value)) {
-      setFormData((prev) => ({
-        ...prev,
-        issueCategories: prev.issueCategories.filter(
-          (category) => category !== value
-        ),
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        issueCategories: [...prev.issueCategories, value],
-      }));
-    }
-
-    if (formErrors.issueCategories) {
-      setFormErrors((prev) => ({
-        ...prev,
-        issueCategories: "",
-      }));
-    }
-  };
-
   const bookServiceHandler = async () => {
-    if (formData.issueCategories.length === 0) {
+    if (formData.issueDescription.trim() === "") {
       setFormErrors((prev) => ({
         ...prev,
-        issueCategories: "At least one issue is required",
+        issueDescription: "Issue description is required",
       }));
       return;
     }
 
     setButtonLoading(true);
 
-    const issueText = `Issue Categories: ${formData.issueCategories.join(", ")}.
-     ${formData.issueDescription}`;
+    const issueText = `${formData.issueDescription}`;
 
     await handleBookService(serviceType, issueText);
 
@@ -80,18 +53,12 @@ const AutoServiceBookingModalContainer = ({
       </div>
 
       <div className="p-4 border-y border-gray-200 space-y-6">
-        <IssueCategorySelector
-          value={formData.issueCategories}
-          onChange={handleIssueCategoryChange}
-          error={formErrors.issueCategories}
-        />
-
         <div className="flex flex-col gap-2">
           <h2
             id="issue-category-title"
             className="text-base font-semibold text-gray-900 tracking-tight"
           >
-            Describe the issue (Optional)
+            Describe the issue
           </h2>
 
           <textarea
@@ -106,6 +73,12 @@ const AutoServiceBookingModalContainer = ({
             className="w-full rounded-md border border-gray-200 p-2 text-sm text-gray-900"
             rows={4}
           />
+
+          {formErrors.issueDescription && (
+            <p className="text-sm text-red-500">
+              {formErrors.issueDescription}
+            </p>
+          )}
         </div>
       </div>
 
@@ -123,4 +96,4 @@ const AutoServiceBookingModalContainer = ({
   );
 };
 
-export default AutoServiceBookingModalContainer;
+export default HomeServiceBookingModalContainer;

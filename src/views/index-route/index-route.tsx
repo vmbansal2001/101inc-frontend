@@ -1,6 +1,6 @@
 "use client";
 
-import CustomerDashboard from "@/src/components/customer-dashboard/customer-dashboard";
+import CustomerDashboard from "@/src/views/index-route/customer-dashboard/customer-dashboard";
 import useUserData from "@/src/components/use-user-data/use-user-data";
 
 const IndexRoute = () => {
