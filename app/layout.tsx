@@ -4,6 +4,7 @@ import "./globals.css";
 import Authenticator from "@/src/components/authenticator/authenticator";
 import StoreProvider from "@/src/store/store-provider";
 import { Toaster } from "react-hot-toast";
+import NotificationPermissionButton from "@/src/components/notification-permission-button";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <StoreProvider>
           <Authenticator />
           <Toaster />
+          <NotificationPermissionButton />
           {children}
         </StoreProvider>
       </body>
