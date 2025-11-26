@@ -1,11 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import userTransformer from "@/src/types/user/user.transformer";
+import {
+  userTransformer,
+  usersTransformer,
+} from "@/src/types/user/user.transformer";
 import baseApi from "../base-api";
 import User from "@/src/types/user/User";
 
 export const usersApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getMechanicUsers: builder.query<User[] | null, void>({
+      query: () => ({
+        url: `/api/v1/users/mechanic/all`,
+      }),
+      providesTags: ["Users"],
+      transformResponse: (response) => usersTransformer(response),
+    }),
+
     getUserByEmail: builder.query<User | null, { email: string }>({
       query: ({ email }) => ({
         url: `/api/v1/users/by-email`,
@@ -30,4 +41,6 @@ export const {
   useGetUserByEmailQuery,
   useLazyGetUserByEmailQuery,
   usePostUserDataMutation,
+  useGetMechanicUsersQuery,
+  useLazyGetMechanicUsersQuery,
 } = usersApi;

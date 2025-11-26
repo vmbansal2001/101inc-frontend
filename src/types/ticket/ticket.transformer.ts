@@ -1,17 +1,17 @@
 import Ticket from "./Ticket";
-import userTransformer from "../user/user.transformer";
+import { userTransformer } from "../user/user.transformer";
+import { serviceTypeTransformer } from "../service-type/service-type.transformer";
+import { estimatesTransformer } from "../estimate/estimate.transformer";
+import { mechanicAssignmentsTransformer } from "../mechanic-assignment/mechanic-assignment.transformer";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const ticketTransformer = (ticket: any): Ticket => {
   return {
     id: ticket.id,
-    service_type: {
-      id: ticket.service_type.id,
-      category_id: ticket.service_type.category_id,
-      name: ticket.service_type.name,
-      description: ticket.service_type.description,
-    },
+    service_type: serviceTypeTransformer(ticket.service_type),
     ticket_code: ticket.ticket_code,
+    estimates: estimatesTransformer(ticket.estimates),
+    assignments: mechanicAssignmentsTransformer(ticket.assignments),
     status: ticket.status,
     service_issue_id: ticket.service_issue_id,
     customer_location_id: ticket.customer_location_id,

@@ -5,10 +5,14 @@ import TicketsListContainer from "./tickets-list-container/tickets-list-containe
 const AdminTicketsContainer = () => {
   const { data: tickets } = useGetAllTicketsQuery();
 
+  const sortedTickets = tickets?.toSorted((a, b) => {
+    return b.id - a.id;
+  });
+
   return (
     <>
-      {tickets && <TicketsStatsPanel tickets={tickets} />}
-      {tickets && <TicketsListContainer tickets={tickets} />}
+      {sortedTickets && <TicketsStatsPanel tickets={sortedTickets} />}
+      {sortedTickets && <TicketsListContainer tickets={sortedTickets} />}
     </>
   );
 };

@@ -1,13 +1,18 @@
 import ServiceType from "./ServiceType";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const serviceTypeTransformer = (serviceTypes: any): ServiceType[] => {
-  return serviceTypes.map((serviceType: any) => ({
-    id: serviceType.id,
-    category_id: serviceType.category_id,
-    name: serviceType.name,
-    description: serviceType.description,
-  }));
+const servicesTypeTransformer = (services: any): ServiceType[] => {
+  return services.map((service: any) => serviceTypeTransformer(service));
 };
 
-export default serviceTypeTransformer;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const serviceTypeTransformer = (serviceTypes: any): ServiceType => {
+  return {
+    id: serviceTypes.id,
+    category_id: serviceTypes.category_id,
+    name: serviceTypes.name,
+    description: serviceTypes.description,
+  };
+};
+
+export { serviceTypeTransformer, servicesTypeTransformer };

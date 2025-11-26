@@ -1,6 +1,11 @@
 import User from "./User";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+const usersTransformer = (users: any): User[] => {
+  return users.map((user: any) => userTransformer(user));
+};
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const userTransformer = (user: any): User => {
   return {
     id: user.id,
@@ -9,7 +14,8 @@ const userTransformer = (user: any): User => {
     email: user.email || "",
     role: user.role || "",
     service_type_ids: user.service_type_ids || [],
+    mechanic_services: user.mechanic_services || [],
   };
 };
 
-export default userTransformer;
+export { userTransformer, usersTransformer };

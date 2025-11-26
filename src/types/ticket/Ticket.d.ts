@@ -1,3 +1,5 @@
+import Estimate from "../estimate/Estimate";
+import MechanicAssignment from "../mechanic-assignment/MechanicAssignment";
 import User from "../user/User";
 
 type Ticket = {
@@ -9,6 +11,8 @@ type Ticket = {
     name: string;
     description: string;
   };
+  estimates: Estimate[];
+  assignments: MechanicAssignment[];
   status: string;
   service_issue_id: number;
   customer_location_id: number | null;
