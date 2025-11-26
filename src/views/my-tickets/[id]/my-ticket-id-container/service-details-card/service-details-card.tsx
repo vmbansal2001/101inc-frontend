@@ -1,5 +1,6 @@
 import Ticket from "@/src/types/ticket/Ticket";
-import React from "react";
+import AddMechanicEstimates from "./add-mechanic-estimates";
+import ShowMechanicEstimates from "./show-mechanic-estimates";
 
 type Props = {
   ticket: Ticket;
@@ -7,7 +8,7 @@ type Props = {
 
 const ServiceDetailsCard = ({ ticket }: Props) => {
   return (
-    <div className="border md:p-5 p-3 rounded-xl border-gray-200 divide-y divide-gray-200 *:py-4 *:first:pt-0 *:last:pb-0 bg-white">
+    <div className="md:p-5 p-3 rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(15,23,42,0.06)] divide-y divide-gray-200 *:py-4 *:first:pt-0 *:last:pb-0 bg-white">
       <div className="flex flex-wrap gap-4">
         <div className="md:w-1/2 w-full">
           <p className="text-sm text-gray-500 font-medium">Opted Service</p>
@@ -52,18 +53,11 @@ const ServiceDetailsCard = ({ ticket }: Props) => {
           </p>
         </div>
 
-        <div className="md:w-1/3 w-full">
-          <p className="text-sm text-gray-500 font-medium">Estimates</p>
-          {ticket.estimates.length > 0 ? (
-            <p className="text-sm font-semibold text-gray-900">
-              {ticket.estimates[0].currency} {ticket.estimates[0].amount}
-              {ticket.estimates.length > 1 &&
-                ` +${ticket.estimates.length - 1} more`}
-            </p>
-          ) : (
-            <p className="text-sm text-gray-700">Not added yet</p>
-          )}
-        </div>
+        {ticket.estimates.length > 0 ? (
+          <ShowMechanicEstimates ticket={ticket} />
+        ) : (
+          <AddMechanicEstimates ticket={ticket} />
+        )}
       </div>
     </div>
   );

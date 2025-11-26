@@ -1,5 +1,4 @@
 import User from "@/src/types/user/User";
-import React from "react";
 
 type Props = {
   customer: User;
@@ -7,7 +6,7 @@ type Props = {
 
 const CustomerDetailsCard = ({ customer }: Props) => {
   return (
-    <div className="border md:p-5 p-3 rounded-xl border-gray-200 bg-white space-y-4">
+    <div className="rounded-2xl border border-gray-100 bg-white p-3 shadow-[0_10px_30px_rgba(15,23,42,0.06)] md:p-5 space-y-4">
       <h2 className="text-lg font-semibold text-gray-900">Customer Details</h2>
 
       <div className="grid md:grid-cols-2 gap-4 text-sm">

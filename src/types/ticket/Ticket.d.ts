@@ -1,5 +1,6 @@
 import Estimate from "../estimate/Estimate";
 import MechanicAssignment from "../mechanic-assignment/MechanicAssignment";
+import Payment from "../payment/Payment";
 import User from "../user/User";
 
 type Ticket = {
@@ -12,6 +13,7 @@ type Ticket = {
     description: string;
   };
   estimates: Estimate[];
+  payments: Payment[];
   assignments: MechanicAssignment[];
   status: string;
   service_issue_id: number;

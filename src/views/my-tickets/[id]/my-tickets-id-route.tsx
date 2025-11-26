@@ -1,7 +1,6 @@
 import MechanicNavbar from "@/src/components/navbar/mechanic-navbar";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import React from "react";
-import MyTicketsIdContainer from "./my-tickets-id-container";
+import MyTicketsIdContainer from "./my-ticket-id-container/my-tickets-id-container";
 
 type Props = {
   id: string;
