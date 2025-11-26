@@ -9,12 +9,10 @@ const AutoServicesContainer = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold text-gray-900 tracking-tight">
+      <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
         Auto Services
-      </h2>
-      <p className="text-sm text-gray-600 font-medium">
-        Bike and Car Repair Services
-      </p>
+      </h1>
+      <p className="text-gray-600 font-medium">Bike and Car Repair Services</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
         {autoServiceTypes?.map((serviceType) => (

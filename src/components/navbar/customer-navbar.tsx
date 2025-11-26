@@ -18,13 +18,6 @@ const CustomerNavbar = () => {
           <Link href="/">
             <LogoWithName />
           </Link>
-
-          <Link
-            href="/my-bookings"
-            className="text-sm text-[#545454] font-medium hover:text-gray-900 transition-all duration-200"
-          >
-            My Bookings
-          </Link>
         </div>
 
         <div className="flex items-center gap-2">
