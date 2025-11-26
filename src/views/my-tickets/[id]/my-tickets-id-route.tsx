@@ -1,17 +1,16 @@
-"use client";
-
-import CustomerNavbar from "@/src/components/navbar/customer-navbar";
+import MechanicNavbar from "@/src/components/navbar/mechanic-navbar";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import BookingIdContainer from "./booking-id-container";
+import React from "react";
+import MyTicketsIdContainer from "./my-tickets-id-container";
 
 type Props = {
   id: string;
 };
 
-const BookingsIdRoute = ({ id }: Props) => {
+const MyTicketsIdRoute = ({ id }: Props) => {
   const { userData } = useUserData();
 
-  if (userData.role !== "CUSTOMER") {
+  if (userData.role !== "MECHANIC") {
     return (
       <div className="flex justify-center items-center h-screen">
         You are not authorized to access this page
@@ -21,11 +20,11 @@ const BookingsIdRoute = ({ id }: Props) => {
 
   return (
     <div className="">
-      <CustomerNavbar />
+      <MechanicNavbar />
 
-      <BookingIdContainer id={id} />
+      <MyTicketsIdContainer id={id} />
     </div>
   );
 };
 
-export default BookingsIdRoute;
+export default MyTicketsIdRoute;

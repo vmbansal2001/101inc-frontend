@@ -14,14 +14,14 @@ const IndexRoute = () => {
     if (userData.role === "ADMIN") {
       router.replace("/admin/tickets");
     }
+
+    if (userData.role === "MECHANIC") {
+      router.replace("/my-tickets");
+    }
   }, [userData.role, router]);
 
   if (userData.role === "MECHANIC") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Mechanic Dashboard
-      </div>
-    );
+    return null;
   }
 
   if (userData.role === "CUSTOMER") {
