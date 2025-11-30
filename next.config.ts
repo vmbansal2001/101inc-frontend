@@ -1,5 +1,6 @@
 import withPWA from "next-pwa";
 import withSVGR from "next-svgr";
+import createNextIntlPlugin from "next-intl/plugin";
 
 import type { NextConfig } from "next";
 
@@ -32,4 +33,6 @@ const pwaConfig = withPWA({
 
 const svgrConfig = withSVGR as (config: NextConfig) => NextConfig;
 
-export default svgrConfig(pwaConfig(nextConfig));
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+export default withNextIntl(svgrConfig(pwaConfig(nextConfig)));

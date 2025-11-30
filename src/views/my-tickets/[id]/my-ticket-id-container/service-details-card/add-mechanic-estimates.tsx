@@ -4,12 +4,15 @@ import { usePostEstimateMutation } from "@/src/services/estimate/estimate.query"
 import { useState } from "react";
 import useUserData from "@/src/components/use-user-data/use-user-data";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 type Props = {
   ticket: Ticket;
 };
 
 const AddMechanicEstimates = ({ ticket }: Props) => {
+  const t = useTranslations("mechanicTicketId");
+
   const [addEstimate] = usePostEstimateMutation();
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -60,7 +63,7 @@ const AddMechanicEstimates = ({ ticket }: Props) => {
             htmlFor="estimate-amount"
             className="block text-xs font-medium text-gray-700"
           >
-            Estimated amount
+            {t("estimatedAmount")}
           </label>
           <div className="flex gap-2">
             <div className="relative flex-1">
@@ -78,7 +81,7 @@ const AddMechanicEstimates = ({ ticket }: Props) => {
             </div>
           </div>
           <p className="text-[11px] text-gray-500">
-            Include parts, labour and any additional fees in this estimate.
+            {t("estimateDescription")}
           </p>
         </div>
 
@@ -88,7 +91,7 @@ const AddMechanicEstimates = ({ ticket }: Props) => {
           className="w-full rounded-md bg-black text-white px-3 py-2 text-sm font-semibold shadow-sm hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={handleAddEstimate}
         >
-          Add estimate
+          {t("addEstimate")}
         </Button>
       </div>
     </div>

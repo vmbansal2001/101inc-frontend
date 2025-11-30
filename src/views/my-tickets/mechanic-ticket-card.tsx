@@ -1,4 +1,5 @@
 import MechanicAssignment from "@/src/types/mechanic-assignment/MechanicAssignment";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 type MechanicTicketCardProps = {
@@ -9,6 +10,9 @@ const MechanicTicketCard = ({
   mechanicAssignment,
 }: MechanicTicketCardProps) => {
   const { ticket, status: assignmentStatus } = mechanicAssignment;
+
+  const tct = useTranslations("mechanicTicketCard");
+  const st = useTranslations("status");
 
   return (
     <Link
@@ -21,24 +25,26 @@ const MechanicTicketCard = ({
         </p>
 
         <p className="mt-1 text-sm font-semibold text-gray-900">
-          {ticket.description || "No description provided"}
+          {ticket.description}
         </p>
 
         <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-600">
           <span>
-            Ticket status:{" "}
-            <span className="font-semibold text-gray-800">{ticket.status}</span>
+            {tct("ticketStatus")}:{" "}
+            <span className="font-semibold text-gray-800">
+              {st(ticket.status)}
+            </span>
           </span>
         </div>
       </div>
 
       <div className="flex flex-col items-end justify-between">
         <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium text-blue-700 border-blue-200 bg-blue-50">
-          {assignmentStatus}
+          {st(assignmentStatus)}
         </span>
 
         <span className="mt-3 text-xs font-semibold text-blue-600">
-          View details →
+          {tct("viewDetails")} →
         </span>
       </div>
     </Link>

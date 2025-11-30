@@ -1,0 +1,52 @@
+{
+  "assignedJobs": {
+    "title": "Assigned Jobs",
+    "description": "Track your assigned jobs here.",
+    "noAssignedJobs": "You don't have any assigned jobs yet."
+  },
+  "mechanicTicketCard": {
+    "ticketStatus": "Ticket status",
+    "viewDetails": "View details"
+  },
+  "mechanicTicketId": {
+    "title": "Ticket Details",
+    "customerDetails": "Customer Details",
+    "name": "Name",
+    "phone": "Phone",
+    "optedService": "Opted Service",
+    "requestedAt": "Requested At",
+    "detailedDescription": "Detailed Description",
+    "ticketCode": "Ticket Code",
+    "status": "Status",
+    "estimates": "Estimates",
+    "estimate": "Estimate",
+    "haveSharedEstimate": "You've shared estimate for this ticket.",
+    "estimatedAmount": "Estimated amount",
+    "estimateDescription": "Include parts, labour and any additional fees in this estimate.",
+    "addEstimate": "Add Estimate"
+  },
+  "services": {
+    "Bike Repair": "Bike Repair",
+    "Repair, servicing, and breakdown support for two-wheelers": "Repair, servicing, and breakdown support for two-wheelers",
+    "Car Repair": "Car Repair",
+    "Mechanical, electrical, and emergency services for four-wheelers": "Mechanical, electrical, and emergency services for four-wheelers",
+    "Plumber": "Plumber",
+    "Pipe repairs, leak fixes, bathroom/kitchen fittings, and water system maintenance": "Pipe repairs, leak fixes, bathroom/kitchen fittings, and water system maintenance",
+    "Electrician": "Electrician",
+    "Wiring, lighting installation, troubleshooting, and electrical system repairs": "Wiring, lighting installation, troubleshooting, and electrical system repairs",
+    "Carpenter": "Carpenter",
+    "Furniture repair, custom woodwork, and door/window installations": "Furniture repair, custom woodwork, and door/window installations",
+    "Construction": "Construction",
+    "General construction, renovation, and structural maintenance work": "General construction, renovation, and structural maintenance work",
+    "Handyman": "Handyman",
+    "General home repairs, minor installations, and maintenance tasks": "General home repairs, minor installations, and maintenance tasks"
+  },
+  "status": {
+    "ASSIGNED": "Assigned",
+    "APPROVED": "APPROVED",
+    "COMPLETED": "Completed",
+    "REJECTED": "Rejected",
+    "ESTIMATE_PROVIDED": "Estimate Provided",
+    "PENDING_CUSTOMER_APPROVAL": "Pending Customer Approval"
+  }
+}
