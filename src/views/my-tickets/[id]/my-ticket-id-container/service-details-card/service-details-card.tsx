@@ -2,6 +2,7 @@ import Ticket from "@/src/types/ticket/Ticket";
 import AddMechanicEstimates from "./add-mechanic-estimates";
 import ShowMechanicEstimates from "./show-mechanic-estimates";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 type Props = {
   ticket: Ticket;
@@ -12,8 +13,30 @@ const ServiceDetailsCard = ({ ticket }: Props) => {
   const st = useTranslations("status");
   const servicesT = useTranslations("services");
 
+  const ticketsArray = ticket.photo_url?.split(",") || [];
+
   return (
     <div className="md:p-5 p-3 rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(15,23,42,0.06)] divide-y divide-gray-200 *:py-4 *:first:pt-0 *:last:pb-0 bg-white">
+      {ticketsArray.length > 0 && (
+        <div className="flex flex-col">
+          <p className="text-sm text-gray-500 font-medium">
+            {t("attachments")}
+          </p>
+          <div className="flex flex-wrap gap-4 mt-2">
+            {ticketsArray.map((ticket, index) => (
+              <Image
+                key={index}
+                src={ticket}
+                alt="Ticket"
+                className="max-h-72 w-auto rounded-md"
+                width={300}
+                height={300}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-4">
         <div className="md:w-1/2 w-full">
           <p className="text-sm text-gray-500 font-medium">

@@ -10,6 +10,7 @@
   },
   "mechanicTicketId": {
     "title": "टिकट विवरण",
+    "attachments": "अनुप्रयोगहरू",
     "customerDetails": "ग्राहक विवरण",
     "name": "नाम",
     "phone": "फोन",

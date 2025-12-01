@@ -14,6 +14,7 @@ type Ticket = {
   };
   estimates: Estimate[];
   payments: Payment[];
+  photo_url: string | null;
   assignments: MechanicAssignment[];
   status: string;
   service_issue_id: number;

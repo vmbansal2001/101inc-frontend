@@ -19,6 +19,7 @@ const ticketTransformer = (ticket: any): Ticket => {
     customer_location_id: ticket.customer_location_id,
     description: ticket.description,
     customer_id: ticket.customer_id,
+    photo_url: ticket.photo_url,
     customer: userTransformer(ticket.customer),
     requested_at: ticket.requested_at,
   };

@@ -60,21 +60,17 @@ const MechanicNavbar = () => {
             {languageDropdownOpen && (
               <div className="absolute overflow-hidden top-8 right-0 text-xs rounded-md bg-white border-gray-300 border">
                 <button
-                  onClick={() =>
-                    router.push(
-                      `/${nextLocale}${pathname.replace(/^\/(en|ne)/, "")}`
-                    )
-                  }
+                  onClick={() => {
+                    router.push(pathname, { locale: nextLocale });
+                  }}
                   className="w-full text-xs cursor-pointer px-3 py-2 hover:bg-gray-100 duration-200"
                 >
                   English
                 </button>
                 <button
-                  onClick={() =>
-                    router.push(
-                      `/${nextLocale}${pathname.replace(/^\/(en|ne)/, "")}`
-                    )
-                  }
+                  onClick={() => {
+                    router.push(pathname, { locale: nextLocale });
+                  }}
                   className="w-full text-xs cursor-pointer px-3 py-2 hover:bg-gray-100 duration-200"
                 >
                   नेपाली

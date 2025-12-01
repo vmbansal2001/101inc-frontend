@@ -10,6 +10,7 @@
   },
   "mechanicTicketId": {
     "title": "Ticket Details",
+    "attachments": "Attachments",
     "customerDetails": "Customer Details",
     "name": "Name",
     "phone": "Phone",
