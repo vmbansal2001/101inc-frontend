@@ -1,6 +1,6 @@
 import useUserData from "@/src/components/use-user-data/use-user-data";
 import { useGetTicketsByUserIdQuery } from "@/src/services/tickets/tickets.query";
-import Link from "next/link";
+import { Link } from "@/navigation";
 
 const BookingsContainer = () => {
   const { userData } = useUserData();

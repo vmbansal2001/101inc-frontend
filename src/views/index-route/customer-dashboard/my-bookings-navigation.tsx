@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { CalendarClock } from "lucide-react";
 
 import useUserData from "@/src/components/use-user-data/use-user-data";

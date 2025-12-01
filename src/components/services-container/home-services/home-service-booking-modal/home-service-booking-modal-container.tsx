@@ -2,6 +2,7 @@ import ServiceType from "@/src/types/service-type/ServiceType";
 import { useState } from "react";
 import useServiceBookingHandler from "../../use-service-booking-handler";
 import Button from "@/src/components/buttons/common-button";
+// import usePhotoUploadHook from "../../use-photo-upload";
 
 type Props = {
   serviceType: ServiceType;
@@ -13,6 +14,8 @@ const HomeServiceBookingModalContainer = ({
   handleClose,
 }: Props) => {
   const { handleBookService } = useServiceBookingHandler();
+  // const { handleUploadMenteeProfilePhoto, isUploadingMedia } =
+  //   usePhotoUploadHook();
 
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -80,6 +83,14 @@ const HomeServiceBookingModalContainer = ({
             </p>
           )}
         </div>
+
+        {/* <div className="flex flex-col gap-2">
+          <h2 className="text-base font-semibold text-gray-900 tracking-tight">
+            Attachments
+          </h2>
+
+          <input type="file" onChange={handleUploadMenteeProfilePhoto} />
+        </div> */}
       </div>
 
       <div className="p-4">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { CheckCircle2, Home, Wrench } from "lucide-react";
 
 import AutoServiceImage from "./assets/auto-service-category.png";

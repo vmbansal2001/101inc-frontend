@@ -3,7 +3,7 @@
 import CustomerNavbar from "@/src/components/navbar/customer-navbar";
 import HomeServicesContainer from "@/src/components/services-container/home-services/home-services-container";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { useEffect } from "react";
 
 const HomeServicesRoute = () => {

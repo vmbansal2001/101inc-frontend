@@ -3,7 +3,7 @@
 import CustomerNavbar from "@/src/components/navbar/customer-navbar";
 import AutoServicesContainer from "@/src/components/services-container/auto-services/auto-services-container";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { useEffect } from "react";
 
 const AutoServicesRoute = () => {

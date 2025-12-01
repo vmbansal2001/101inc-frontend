@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import LogoWithName from "../logos/logo-with-name";
 import useUserData from "../use-user-data/use-user-data";
 import { LogOut } from "lucide-react";

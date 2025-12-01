@@ -1,6 +1,6 @@
 import MechanicAssignment from "@/src/types/mechanic-assignment/MechanicAssignment";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/navigation";
 
 type MechanicTicketCardProps = {
   mechanicAssignment: MechanicAssignment;

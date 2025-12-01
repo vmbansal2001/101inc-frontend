@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 
 import CustomerDashboard from "@/src/views/index-route/customer-dashboard/customer-dashboard";
 import useUserData from "@/src/components/use-user-data/use-user-data";

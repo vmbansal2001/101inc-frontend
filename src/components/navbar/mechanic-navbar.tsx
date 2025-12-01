@@ -1,12 +1,9 @@
 import useUserData from "../use-user-data/use-user-data";
 import LogoWithName from "../logos/logo-with-name";
-import Link from "next/link";
 import { auth } from "@/src/firebase.config";
 import { Globe, LogOut } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { setLanguage } from "@/src/store/slices/configurations-state-slice/configurations-state-slice";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/navigation";
 import { useLocale } from "next-intl";
 
 const MechanicNavbar = () => {
