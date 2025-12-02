@@ -1,7 +1,7 @@
-import React from "react";
 import BookingDetailContainer from "./booking-detail-container";
 import { useGetTicketByIdQuery } from "@/src/services/tickets/tickets.query";
 import BookingServiceTimeline from "./booking-service-timeline";
+import BookingEstimateConfirmation from "./booking-estimate-confirmation";
 
 type Props = {
   id: string;
@@ -22,6 +22,7 @@ const BookingIdContainer = ({ id }: Props) => {
       </div>
 
       {ticket && <BookingDetailContainer ticket={ticket} />}
+      {ticket && <BookingEstimateConfirmation ticket={ticket} />}
       {ticket && <BookingServiceTimeline ticket={ticket} />}
     </div>
   );

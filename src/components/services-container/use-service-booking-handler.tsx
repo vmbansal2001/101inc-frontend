@@ -9,12 +9,14 @@ const useServiceBookingHandler = () => {
 
   const handleBookService = async (
     serviceType: ServiceType,
-    issueText: string
+    issueText: string,
+    photo_url: string | null
   ) => {
     const payloadBody = {
       service: serviceType.name,
       description: issueText,
       user_id: userData.id,
+      photo_url: photo_url,
     };
 
     const postTicketPromise = postTicket({ body: payloadBody });

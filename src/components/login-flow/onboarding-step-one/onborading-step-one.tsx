@@ -38,18 +38,6 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
 
   const { updateUserData } = useUserData();
 
-  // useEffect(() => {
-  //   console.log("Calling fetchMechanicServices");
-  //   const fetchMechanicServices = async () => {
-  //     const response = await fetch(
-  //       `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/service_types/`
-  //     );
-  //     const data = await response.json();
-  //     setMechanicServices(data);
-  //   };
-  //   fetchMechanicServices();
-  // }, []);
-
   const clearFormErrors = () => {
     setFormErrors({
       name: "",

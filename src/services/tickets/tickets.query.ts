@@ -9,6 +9,18 @@ import {
 
 export const ticketsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    patchTicketById: builder.mutation<
+      unknown | null,
+      { ticket_id: number; body: unknown }
+    >({
+      query: ({ ticket_id, body }) => ({
+        url: `/api/v1/tickets/${ticket_id}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Tickets"],
+    }),
+
     getAllTickets: builder.query<Ticket[] | null, void>({
       query: () => ({
         url: `/api/v1/tickets/all`,
@@ -45,6 +57,7 @@ export const ticketsApi = baseApi.injectEndpoints({
 
 export const {
   usePostTicketMutation,
+  usePatchTicketByIdMutation,
   useGetTicketsByUserIdQuery,
   useLazyGetTicketsByUserIdQuery,
   useGetTicketByIdQuery,

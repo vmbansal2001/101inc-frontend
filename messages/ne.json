@@ -1,0 +1,53 @@
+{
+  "assignedJobs": {
+    "title": "नियुक्त गरिएका कार्यहरू",
+    "description": "यहाँ तपाईंका नियुक्त गरिएका कार्यहरू ट्र्याक गर्नुहोस्।",
+    "noAssignedJobs": "तपाईंकाे कुनै पनि नियुक्त कार्यहरू छैनन्।"
+  },
+  "mechanicTicketCard": {
+    "ticketStatus": "टिकट स्थिति",
+    "viewDetails": "विवरण हेर्नुहोस्"
+  },
+  "mechanicTicketId": {
+    "title": "टिकट विवरण",
+    "attachments": "अनुप्रयोगहरू",
+    "customerDetails": "ग्राहक विवरण",
+    "name": "नाम",
+    "phone": "फोन",
+    "optedService": "छानिएको सेवा",
+    "requestedAt": "अनुरोधित मिति",
+    "detailedDescription": "विस्तृत विवरण",
+    "ticketCode": "टिकट कोड",
+    "status": "स्थिति",
+    "estimates": "अनुमानहरू",
+    "estimate": "अनुमान",
+    "haveSharedEstimate": "तपाईंले यो टिकटको लागि अनुमान साझा गर्नुभएको छ।",
+    "estimatedAmount": "अनुमानित रकम",
+    "estimateDescription": "यस अनुमानमा पार्ट्स, मजदुरी र अन्य थप शुल्कहरू समावेश गर्नुहोस्।",
+    "addEstimate": "अनुमान थप्नुहोस्"
+  },
+  "services": {
+    "Bike Repair": "बाइक मर्मत",
+    "Repair, servicing, and breakdown support for two-wheelers": "दुई-पांग्रे सवारी साधनको मर्मत, सर्भिसिङ, र ब्रेकडाउन सहयोग",
+    "Car Repair": "कार मर्मत",
+    "Mechanical, electrical, and emergency services for four-wheelers": "चार-पांग्रे सवारी साधनको मेकानिकल, इलेक्ट्रिकल, र आपतकालीन सेवा",
+    "Plumber": "प्लम्बर",
+    "Pipe repairs, leak fixes, bathroom/kitchen fittings, and water system maintenance": "पाइप मर्मत, चुहावट मर्मत, बाथरूम/भान्साको फिटिङ्ग र पानी प्रणालीको मर्मत",
+    "Electrician": "इलेक्ट्रिसियन",
+    "Wiring, lighting installation, troubleshooting, and electrical system repairs": "वायरिङ्ग, बत्ती जडान, समस्या समाधान, र विद्युत प्रणाली मर्मत",
+    "Carpenter": "काठमिस्त्री",
+    "Furniture repair, custom woodwork, and door/window installations": "फर्निचर मर्मत, आफ्नो रोजाइको काठको काम, ढोका/झ्याल जडान",
+    "Construction": "निर्माण",
+    "General construction, renovation, and structural maintenance work": "साधारण निर्माण, नवीकरण, र संरचनागत मर्मत कार्य",
+    "Handyman": "ह्यान्डिम्यान",
+    "General home repairs, minor installations, and maintenance tasks": "घरका साधारण मर्मत, साना जडान तथा मर्मत कार्यहरू"
+  },
+  "status": {
+    "ASSIGNED": "नियुक्त",
+    "APPROVED": "स्वीकृत",
+    "COMPLETED": "पूर्ण",
+    "REJECTED": "अस्वीकृत",
+    "ESTIMATE_PROVIDED": "अनुमान प्रदान गरिएको",
+    "PENDING_CUSTOMER_APPROVAL": "ग्राहकको स्वीकृति पर्खंदै"
+  }
+}

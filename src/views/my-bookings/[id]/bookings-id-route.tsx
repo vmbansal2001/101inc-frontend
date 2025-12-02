@@ -2,7 +2,6 @@
 
 import CustomerNavbar from "@/src/components/navbar/customer-navbar";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import BookingDetailContainer from "./booking-detail-container";
 import BookingIdContainer from "./booking-id-container";
 
 type Props = {

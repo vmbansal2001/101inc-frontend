@@ -1,6 +1,6 @@
 import useUserData from "../use-user-data/use-user-data";
 import LogoWithName from "../logos/logo-with-name";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { auth } from "@/src/firebase.config";
 import { LogOut } from "lucide-react";
 
