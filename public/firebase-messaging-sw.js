@@ -16,8 +16,16 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-  self.registration.showNotification(payload.notification.title, {
-    body: payload.notification.body,
-    icon: "/icons/icon-192x192.png",
-  });
+  // When the payload already contains `notification`, the browser shows it.
+  if (payload.notification) {
+    return;
+  }
+
+  const title = payload.data?.title ?? "Notification";
+  const options = {
+    body: payload.data?.body,
+    icon: payload.data?.icon ?? "/icons/icon-192x192.png",
+  };
+
+  self.registration.showNotification(title, options);
 });
