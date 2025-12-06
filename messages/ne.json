@@ -24,7 +24,12 @@
     "haveSharedEstimate": "तपाईंले यो टिकटको लागि अनुमान साझा गर्नुभएको छ।",
     "estimatedAmount": "अनुमानित रकम",
     "estimateDescription": "यस अनुमानमा पार्ट्स, मजदुरी र अन्य थप शुल्कहरू समावेश गर्नुहोस्।",
-    "addEstimate": "अनुमान थप्नुहोस्"
+    "addEstimate": "अनुमान थप्नुहोस्",
+    "ticketCompletion": "टिकट समापन",
+    "markAsCompleteDescription": "काम सम्पन्न भएको पुष्टि गर्न टिकटलाई पूर्ण भएको रूपमा चिन्ह लगाउनुहोस्।",
+    "noticePaymentReceived": "कृपया ध्यान दिनुहोस्, टिकट पूर्ण गरिएको अर्थ ग्राहकले सेवा शुल्क तिरेको र तपाईंले भुक्तानी प्राप्त गरिसक्नुभएको हुन्छ।",
+    "markAsComplete": "पूर्ण भएको रूपमा चिन्ह लगाउनुहोस्",
+    "thisActionCannotBeUndone": "एक पटक पुष्टि भएपछि यो कार्य तपाईंको तर्फबाट पूर्ववत् गर्न सकिँदैन।"
   },
   "services": {
     "Bike Repair": "बाइक मर्मत",
@@ -48,6 +53,7 @@
     "COMPLETED": "पूर्ण",
     "REJECTED": "अस्वीकृत",
     "ESTIMATE_PROVIDED": "अनुमान प्रदान गरिएको",
-    "PENDING_CUSTOMER_APPROVAL": "ग्राहकको स्वीकृति पर्खंदै"
+    "PENDING_CUSTOMER_APPROVAL": "ग्राहकको स्वीकृति पर्खंदै",
+    "WORK_IN_PROGRESS": "कार्य चलिरहेको"
   }
 }

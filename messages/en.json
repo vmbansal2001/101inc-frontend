@@ -24,7 +24,12 @@
     "haveSharedEstimate": "You've shared estimate for this ticket.",
     "estimatedAmount": "Estimated amount",
     "estimateDescription": "Include parts, labour and any additional fees in this estimate.",
-    "addEstimate": "Add Estimate"
+    "addEstimate": "Add Estimate",
+    "ticketCompletion": "Ticket Completion",
+    "markAsCompleteDescription": "Mark the ticket as complete to confirm that the work has been completed.",
+    "noticePaymentReceived": "Please note that marking the ticket as complete will mean that the customer has paid for the services, and you have received your payment.",
+    "markAsComplete": "Mark as complete",
+    "thisActionCannotBeUndone": "This action cannot be undone from your side once confirmed."
   },
   "services": {
     "Bike Repair": "Bike Repair",
@@ -48,6 +53,7 @@
     "COMPLETED": "Completed",
     "REJECTED": "Rejected",
     "ESTIMATE_PROVIDED": "Estimate Provided",
-    "PENDING_CUSTOMER_APPROVAL": "Pending Customer Approval"
+    "PENDING_CUSTOMER_APPROVAL": "Pending Customer Approval",
+    "WORK_IN_PROGRESS": "Work in Progress"
   }
 }

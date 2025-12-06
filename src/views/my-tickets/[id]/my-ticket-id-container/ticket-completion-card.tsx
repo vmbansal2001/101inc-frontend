@@ -2,6 +2,7 @@ import Button from "@/src/components/buttons/common-button";
 import { usePatchTicketByIdMutation } from "@/src/services/tickets/tickets.query";
 import Ticket from "@/src/types/ticket/Ticket";
 import { InfoIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const TicketCompletionCard = ({ ticket }: Props) => {
+  const t = useTranslations("mechanicTicketId");
   const [patchTicketById] = usePatchTicketByIdMutation();
 
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -44,11 +46,10 @@ const TicketCompletionCard = ({ ticket }: Props) => {
 
         <div className="space-y-1">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-600">
-            Ticket completion
+            {t("ticketCompletion")}
           </p>
           <p className="text-sm font-semibold text-gray-900">
-            Mark the ticket as complete to confirm that the work has been
-            completed.
+            {t("markAsCompleteDescription")}
           </p>
         </div>
       </div>
@@ -56,9 +57,7 @@ const TicketCompletionCard = ({ ticket }: Props) => {
       <div className="rounded-xl flex md:items-center border border-dashed border-gray-200 bg-gray-50 px-3 py-2.5">
         <InfoIcon className="min-w-[16px] min-h-[16px] md:mt-0 mt-1 w-4 h-4 text-gray-500 mr-2" />
         <p className="text-xs leading-relaxed text-gray-600">
-          Please note that marking the ticket as complete will mean that the
-          customer has paid for the services, and you have received your
-          payment.
+          {t("noticePaymentReceived")}
         </p>
       </div>
 
@@ -69,11 +68,11 @@ const TicketCompletionCard = ({ ticket }: Props) => {
           onClick={handleMarkAsComplete}
           className="inline-flex w-full items-center justify-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
         >
-          Mark as complete
+          {t("markAsComplete")}
         </Button>
 
         <p className="text-[11px] text-gray-500">
-          This action cannot be undone from your side once confirmed.
+          {t("thisActionCannotBeUndone")}
         </p>
       </div>
     </div>
