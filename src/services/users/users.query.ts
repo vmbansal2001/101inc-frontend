@@ -26,6 +26,15 @@ export const usersApi = baseApi.injectEndpoints({
       transformResponse: (response) => userTransformer(response),
     }),
 
+    getUserByPhone: builder.query<User | null, { phone: string }>({
+      query: ({ phone }) => ({
+        url: `/api/v1/users/by-phone`,
+        params: { phone },
+      }),
+      providesTags: ["Users"],
+      transformResponse: (response) => userTransformer(response),
+    }),
+
     postUserData: builder.mutation<any | null, { body: any }>({
       query: ({ body }) => ({
         url: `/api/v1/users/`,
@@ -43,4 +52,6 @@ export const {
   usePostUserDataMutation,
   useGetMechanicUsersQuery,
   useLazyGetMechanicUsersQuery,
+  useGetUserByPhoneQuery,
+  useLazyGetUserByPhoneQuery,
 } = usersApi;

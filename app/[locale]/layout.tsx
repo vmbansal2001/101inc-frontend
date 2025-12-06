@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import NotificationPermissionHandler from "@/src/components/notification-permission-handler";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
+import Analytics from "@/src/components/analytics/Analytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,6 +39,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${inter.variable} antialiased`}>
+        <Analytics />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <StoreProvider>
             <Authenticator />

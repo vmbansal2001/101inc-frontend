@@ -1,6 +1,5 @@
-import React from "react";
 import { Wrench } from "lucide-react";
-import GoogleLoginButton from "./google-login-button";
+import PhoneLogin from "./phone-login/phone-login";
 
 const LoginContainer = () => {
   return (
@@ -16,8 +15,7 @@ const LoginContainer = () => {
           Auto & Home Services
         </p>
       </div>
-
-      <GoogleLoginButton />
+      <PhoneLogin />
     </div>
   );
 };
