@@ -2,11 +2,13 @@ import React from "react";
 import {
   Wrench,
   Zap,
-  Disc,
-  CarFront,
+  CircleStop,
+  Vibrate,
   PaintRoller,
   MoreHorizontal,
 } from "lucide-react";
+import SuspensionIcon from "@/src/assets/icons/suspension.svg";
+import BrakePadIcon from "@/src/assets/icons/brake-pad.svg";
 
 type IssueCategory = {
   label: string;
@@ -24,11 +26,11 @@ const ISSUE_CATEGORIES: IssueCategory[] = [
   },
   {
     label: "Brake Issue",
-    icon: <Disc className="w-5 h-5 text-sky-500" />,
+    icon: <BrakePadIcon className="w-5 h-5 text-rose-500" />,
   },
   {
     label: "Suspension Problem",
-    icon: <CarFront className="w-5 h-5 text-indigo-500" />,
+    icon: <SuspensionIcon className="w-5 h-5 text-emerald-500" />,
   },
   {
     label: "Paint Job",
