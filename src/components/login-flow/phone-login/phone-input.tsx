@@ -38,7 +38,7 @@ const PhoneInput = ({ phoneNumber, onChange, onSendOtp }: Props) => {
     }
 
     if (!isValid) {
-      return "Please enter a valid phone number including country code.";
+      return "Please enter a valid number including country code.";
     }
 
     return "Great! Tap the button below to receive your OTP.";
@@ -77,7 +77,7 @@ const PhoneInput = ({ phoneNumber, onChange, onSendOtp }: Props) => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50/80 p-5 shadow-inner">
+      <div className="flex flex-col gap-4 rounded-2xl border border-slate-100 bg-slate-50/80 md:p-5 p-3 shadow-inner">
         <label className="text-left text-sm font-semibold text-slate-600">
           Phone number
         </label>
