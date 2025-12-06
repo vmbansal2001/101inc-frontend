@@ -1,3 +1,5 @@
+"use client";
+
 import ServiceType from "@/src/types/service-type/ServiceType";
 import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
@@ -5,6 +7,7 @@ import useServiceBookingHandler from "../../use-service-booking-handler";
 import Button from "@/src/components/buttons/common-button";
 import usePhotoUploadHook from "../../use-photo-upload";
 import Image from "next/image";
+import LocationPicker from "@/src/components/location-picker/location-picker";
 
 type Props = {
   serviceType: ServiceType;
@@ -12,6 +15,8 @@ type Props = {
 };
 
 const MAX_ATTACHMENTS = 3;
+
+const LOCATION_REQUIRED_MESSAGE = "Location is required.";
 
 const HomeServiceBookingModalContainer = ({
   serviceType,
@@ -24,11 +29,13 @@ const HomeServiceBookingModalContainer = ({
   const [formData, setFormData] = useState({
     issueDescription: "",
     attachments: [] as string[],
+    sharableLocationLink: "",
   });
 
   const [formErrors, setFormErrors] = useState({
     issueDescription: "",
     attachments: "",
+    sharableLocationLink: "",
   });
 
   const addPhotoAttachment = (url: string) => {
@@ -63,12 +70,35 @@ const HomeServiceBookingModalContainer = ({
     }));
   };
 
+  const handleLocationSelection = (locationLink: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      sharableLocationLink: locationLink,
+    }));
+
+    if (locationLink) {
+      setFormErrors((prev) => ({
+        ...prev,
+        sharableLocationLink: "",
+      }));
+    }
+  };
+
   const bookServiceHandler = async () => {
     if (formData.issueDescription.trim() === "") {
       setFormErrors((prev) => ({
         ...prev,
         issueDescription: "Issue description is required",
       }));
+      return;
+    }
+
+    if (!formData.sharableLocationLink) {
+      setFormErrors((prev) => ({
+        ...prev,
+        sharableLocationLink: LOCATION_REQUIRED_MESSAGE,
+      }));
+      toast.error(LOCATION_REQUIRED_MESSAGE);
       return;
     }
 
@@ -79,7 +109,12 @@ const HomeServiceBookingModalContainer = ({
 
     const issueText = `${formData.issueDescription}`;
 
-    await handleBookService(serviceType, issueText, photo_url);
+    await handleBookService(
+      serviceType,
+      issueText,
+      photo_url,
+      formData.sharableLocationLink
+    );
 
     setButtonLoading(false);
     handleClose();
@@ -203,6 +238,15 @@ const HomeServiceBookingModalContainer = ({
             {formErrors.attachments && (
               <p className="text-sm text-red-500">{formErrors.attachments}</p>
             )}
+          </div>
+
+          <div className="space-y-2">
+            <LocationPicker setSelectedLocation={handleLocationSelection} />
+            {formErrors.sharableLocationLink ? (
+              <p className="text-sm text-red-500">
+                {formErrors.sharableLocationLink}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

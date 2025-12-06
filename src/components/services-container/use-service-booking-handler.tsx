@@ -10,13 +10,15 @@ const useServiceBookingHandler = () => {
   const handleBookService = async (
     serviceType: ServiceType,
     issueText: string,
-    photo_url: string | null
+    photo_url: string | null,
+    sharableLocationLink: string
   ) => {
     const payloadBody = {
       service: serviceType.name,
       description: issueText,
       user_id: userData.id,
       photo_url: photo_url,
+      location_url: sharableLocationLink,
     };
 
     const postTicketPromise = postTicket({ body: payloadBody });

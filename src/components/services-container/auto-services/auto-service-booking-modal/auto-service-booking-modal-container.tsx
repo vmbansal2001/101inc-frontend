@@ -1,3 +1,5 @@
+"use client";
+
 import { ChangeEvent, useState } from "react";
 import ServiceType from "@/src/types/service-type/ServiceType";
 import IssueCategorySelector from "./issue-category-selector";
@@ -6,6 +8,7 @@ import useServiceBookingHandler from "../../use-service-booking-handler";
 import usePhotoUploadHook from "../../use-photo-upload";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import LocationPicker from "@/src/components/location-picker/location-picker";
 
 type Props = {
   serviceType: ServiceType;
@@ -13,6 +16,8 @@ type Props = {
 };
 
 const MAX_ATTACHMENTS = 3;
+
+const LOCATION_REQUIRED_MESSAGE = "Location is required.";
 
 const AutoServiceBookingModalContainer = ({
   serviceType,
@@ -26,12 +31,14 @@ const AutoServiceBookingModalContainer = ({
     issueCategories: [] as string[],
     issueDescription: "",
     attachments: [] as string[],
+    sharableLocationLink: "",
   });
 
   const [formErrors, setFormErrors] = useState({
     issueCategories: "",
     issueDescription: "",
     attachments: "",
+    sharableLocationLink: "",
   });
 
   const addPhotoAttachment = (url: string) => {
@@ -89,12 +96,35 @@ const AutoServiceBookingModalContainer = ({
     }
   };
 
+  const handleLocationSelection = (locationLink: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      sharableLocationLink: locationLink,
+    }));
+
+    if (locationLink) {
+      setFormErrors((prev) => ({
+        ...prev,
+        sharableLocationLink: "",
+      }));
+    }
+  };
+
   const bookServiceHandler = async () => {
     if (formData.issueCategories.length === 0) {
       setFormErrors((prev) => ({
         ...prev,
         issueCategories: "At least one issue is required",
       }));
+      return;
+    }
+
+    if (!formData.sharableLocationLink) {
+      setFormErrors((prev) => ({
+        ...prev,
+        sharableLocationLink: LOCATION_REQUIRED_MESSAGE,
+      }));
+      toast.error(LOCATION_REQUIRED_MESSAGE);
       return;
     }
 
@@ -106,7 +136,12 @@ ${formData.issueDescription}`;
     const photo_url =
       formData.attachments.length > 0 ? formData.attachments.join(",") : null;
 
-    await handleBookService(serviceType, issueText, photo_url);
+    await handleBookService(
+      serviceType,
+      issueText,
+      photo_url,
+      formData.sharableLocationLink
+    );
 
     setButtonLoading(false);
     handleClose();
@@ -231,6 +266,16 @@ ${formData.issueDescription}`;
             className="w-full rounded-md border border-gray-200 p-2 text-sm text-gray-900"
             rows={4}
           />
+        </div>
+
+        <div className="space-y-2">
+          <LocationPicker setSelectedLocation={handleLocationSelection} />
+
+          {formErrors.sharableLocationLink ? (
+            <p className="text-sm text-red-500">
+              {formErrors.sharableLocationLink}
+            </p>
+          ) : null}
         </div>
       </div>
 
