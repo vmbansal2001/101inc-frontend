@@ -11,8 +11,8 @@ const IndexRoute = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (userData.role === "ADMIN") {
-      router.replace("/admin/tickets");
+    if (userData.role === "OPERATOR") {
+      router.replace("/operator/tickets");
     }
 
     if (userData.role === "MECHANIC") {
@@ -28,7 +28,7 @@ const IndexRoute = () => {
     return <CustomerDashboard />;
   }
 
-  if (userData.role === "ADMIN") {
+  if (userData.role === "OPERATOR") {
     return null;
   }
 

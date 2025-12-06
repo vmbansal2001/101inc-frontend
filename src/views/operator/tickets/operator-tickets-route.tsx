@@ -1,13 +1,13 @@
 "use client";
 
-import AdminNavbar from "@/src/components/navbar/admin-navbar";
+import OperatorNavbar from "@/src/components/navbar/operator-navbar";
 import useUserData from "@/src/components/use-user-data/use-user-data";
-import AdminTicketsContainer from "./admin-tickets-container/admin-tickets-container";
+import OperatorTicketsContainer from "./operator-tickets-container/operator-tickets-container";
 
-const AdminTicketsRoute = () => {
+const OperatorTicketsRoute = () => {
   const { userData } = useUserData();
 
-  if (userData.role !== "ADMIN") {
+  if (userData.role !== "OPERATOR") {
     return (
       <div className="flex justify-center items-center h-screen">
         You are not authorized to access this page
@@ -17,7 +17,7 @@ const AdminTicketsRoute = () => {
 
   return (
     <div>
-      <AdminNavbar />
+      <OperatorNavbar />
       <div className="common-frame-box py-10 space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
@@ -28,10 +28,10 @@ const AdminTicketsRoute = () => {
           </p>
         </div>
 
-        <AdminTicketsContainer />
+        <OperatorTicketsContainer />
       </div>
     </div>
   );
 };
 
-export default AdminTicketsRoute;
+export default OperatorTicketsRoute;

@@ -4,7 +4,7 @@ import { Link } from "@/navigation";
 import { auth } from "@/src/firebase.config";
 import { LogOut } from "lucide-react";
 
-const AdminNavbar = () => {
+const OperatorNavbar = () => {
   const { userData } = useUserData();
 
   const handleLogout = async () => {
@@ -14,7 +14,7 @@ const AdminNavbar = () => {
   return (
     <nav className="bg-white shadow-sm">
       <div className="common-frame-box py-4 flex justify-between items-center">
-        <Link href="/admin/tickets">
+        <Link href="/operator/tickets">
           <LogoWithName />
         </Link>
 
@@ -35,4 +35,4 @@ const AdminNavbar = () => {
   );
 };
 
-export default AdminNavbar;
+export default OperatorNavbar;

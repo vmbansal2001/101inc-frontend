@@ -2,7 +2,7 @@ import { useGetAllTicketsQuery } from "@/src/services/tickets/tickets.query";
 import TicketsStatsPanel from "./tickets-stats-panel";
 import TicketsListContainer from "./tickets-list-container/tickets-list-container";
 
-const AdminTicketsContainer = () => {
+const OperatorTicketsContainer = () => {
   const { data: tickets } = useGetAllTicketsQuery();
 
   const sortedTickets = tickets?.toSorted((a, b) => {
@@ -17,4 +17,4 @@ const AdminTicketsContainer = () => {
   );
 };
 
-export default AdminTicketsContainer;
+export default OperatorTicketsContainer;
