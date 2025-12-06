@@ -26,7 +26,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center md:items-center items-end h-screen">
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
           src="https://images.unsplash.com/photo-1585406666850-82f7532fdae3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWNoYW5pYyUyMGhvbWUlMjByZXBhaXIlMjB0b29sc3xlbnwxfHx8fDE3NjM0MDEzOTd8MA&ixlib=rb-4.1.0&q=80&w=1080"

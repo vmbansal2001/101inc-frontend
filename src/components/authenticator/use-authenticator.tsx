@@ -1,4 +1,4 @@
-import { useLazyGetUserByEmailQuery } from "@/src/services/users/users.query";
+import { useLazyGetUserByPhoneQuery } from "@/src/services/users/users.query";
 import {
   setAuthFirebaseLoading,
   setAuthUser,
@@ -10,17 +10,17 @@ import { useDispatch } from "react-redux";
 
 const useAuthenticator = () => {
   const dispatch = useDispatch();
-  const [getUserByEmail] = useLazyGetUserByEmailQuery();
+  const [getUserByPhone] = useLazyGetUserByPhoneQuery();
 
   const createUserInDb = async (user: User | null) => {
-    if (user && user.email) {
+    if (user && user.phoneNumber) {
       console.log("createUserInDb", user);
     }
   };
 
   const fetchUserDetails = async (user: User | null) => {
-    if (user && user.email) {
-      const response = await getUserByEmail({ email: user.email });
+    if (user && user.phoneNumber) {
+      const response = await getUserByPhone({ phone: user.phoneNumber });
 
       // If API response is 404, then create user in db
       if (
@@ -34,11 +34,12 @@ const useAuthenticator = () => {
   };
 
   const handleAuthUserChange = async (user: User | null) => {
-    if (user && user.email) {
+    if (user && user.phoneNumber) {
       const userToDispatch: AuthUser = {
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        phoneNumber: user.phoneNumber,
       };
 
       await fetchUserDetails(user);

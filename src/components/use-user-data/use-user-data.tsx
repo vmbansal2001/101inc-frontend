@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-  useGetUserByEmailQuery,
+  useGetUserByPhoneQuery,
   usePostUserDataMutation,
 } from "@/src/services/users/users.query";
 import { useAppSelector } from "@/src/store/hooks";
@@ -10,10 +10,10 @@ import { useAppSelector } from "@/src/store/hooks";
 const useUserData = () => {
   const { currentUser } = useAppSelector((state) => state.authState);
 
-  const userEmail = currentUser?.email;
+  const userPhone = currentUser?.phoneNumber;
 
   const { data: userData, isLoading: isUserQueryLoading } =
-    useGetUserByEmailQuery({ email: userEmail || "" }, { skip: !userEmail });
+    useGetUserByPhoneQuery({ phone: userPhone || "" }, { skip: !userPhone });
 
   const [postUserData] = usePostUserDataMutation();
 

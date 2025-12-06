@@ -1,10 +1,10 @@
 import PrivateRouteWrapper from "@/src/components/private-route-wrapper/private-route-wrapper";
-import AdminTicketsRoute from "@/src/views/admin/tickets/admin-tickets-route";
+import OperatorTicketsRoute from "@/src/views/operator/tickets/operator-tickets-route";
 
 const Page = () => {
   return (
     <PrivateRouteWrapper>
-      <AdminTicketsRoute />
+      <OperatorTicketsRoute />
     </PrivateRouteWrapper>
   );
 };

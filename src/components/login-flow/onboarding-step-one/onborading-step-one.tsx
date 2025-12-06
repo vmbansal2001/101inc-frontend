@@ -1,14 +1,12 @@
 import { AuthUser } from "@/src/store/slices/auth-state-slice/auth-state-slice-types";
 import { HardHat, User, Wrench } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../buttons/common-button";
 import useUserData from "../../use-user-data/use-user-data";
-import ServiceType from "@/src/types/service-type/ServiceType";
 import { useGetServiceTypesQuery } from "@/src/services/service-types/service-types.query";
 
 type StepOneFormData = {
   name: string;
-  phone: string;
   role: string;
   mechanicServices: number[];
 };
@@ -22,14 +20,12 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
 
   const [formData, setFormData] = useState<StepOneFormData>({
     name: "",
-    phone: "",
     role: "",
     mechanicServices: [],
   });
 
   const [formErrors, setFormErrors] = useState({
     name: "",
-    phone: "",
     role: "",
     mechanicServices: "",
   });
@@ -41,7 +37,6 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
   const clearFormErrors = () => {
     setFormErrors({
       name: "",
-      phone: "",
       role: "",
       mechanicServices: "",
     });
@@ -52,11 +47,6 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
 
     if (!formData.name) {
       setFormErrors((prev) => ({ ...prev, name: "Name is required" }));
-      return;
-    }
-
-    if (!formData.phone) {
-      setFormErrors((prev) => ({ ...prev, phone: "Phone number is required" }));
       return;
     }
 
@@ -80,7 +70,7 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
 
     const updationPayloadBody = {
       full_name: formData.name,
-      phone: formData.phone,
+      phone: currentUser.phoneNumber,
       role: formData.role,
       email: currentUser.email,
       ...(formData.role === "MECHANIC" && {
@@ -143,7 +133,7 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
           )}
         </div>
 
-        <div className="flex flex-col gap-1.5">
+        {/* <div className="flex flex-col gap-1.5">
           <label
             htmlFor="phone"
             className="text-sm font-semibold text-[#0a0a0a]"
@@ -166,7 +156,7 @@ const OnboardingStepOne = ({ currentUser }: Props) => {
           {formErrors.phone && (
             <p className="text-xs text-red-500 -mt-1">{formErrors.phone}</p>
           )}
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-1.5">
           <p className="text-sm font-semibold text-[#0a0a0a]">Role</p>

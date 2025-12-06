@@ -1,11 +1,10 @@
-import React from "react";
 import { Wrench } from "lucide-react";
-import GoogleLoginButton from "./google-login-button";
+import PhoneLogin from "./phone-login/phone-login";
 
 const LoginContainer = () => {
   return (
-    <div className="w-fit z-10 rounded-2xl shadow-xl border-2 border-red-800/30 p-8 flex flex-col gap-8 items-center bg-white backdrop-blur-sm">
-      <div className="flex flex-col items-center gap-2">
+    <div className="w-fit z-10 rounded-t-2xl md:rounded-b-2xl shadow-xl border-2 border-red-800/30 md:p-8 py-4 px-3 flex flex-col items-center bg-white backdrop-blur-sm overflow-hidden">
+      <div className="flex flex-col items-center gap-2 pb-8">
         <div className="bg-red-600 rounded-full p-5 text-white mb-2 shadow-lg">
           <Wrench size={32} strokeWidth={2.5} />
         </div>
@@ -16,8 +15,7 @@ const LoginContainer = () => {
           Auto & Home Services
         </p>
       </div>
-
-      <GoogleLoginButton />
+      <PhoneLogin />
     </div>
   );
 };
