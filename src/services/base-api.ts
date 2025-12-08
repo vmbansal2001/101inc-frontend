@@ -30,7 +30,7 @@ const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithLogging,
   endpoints: () => ({}),
-  tagTypes: ["Users", "Tickets", "MechanicAssignments"],
+  tagTypes: ["Users", "Tickets", "MechanicAssignments", "InventoryItem"],
 });
 
 export const baseApiReducer = baseApi.reducer;
