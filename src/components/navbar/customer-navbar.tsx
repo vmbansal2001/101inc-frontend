@@ -15,7 +15,7 @@ const CustomerNavbar = () => {
     <nav className="bg-white shadow-sm">
       <div className="common-frame-box py-4 flex justify-between items-center">
         <div className="flex items-center gap-10">
-          <Link href="/">
+          <Link href="/customer-dashboard">
             <LogoWithName />
           </Link>
         </div>

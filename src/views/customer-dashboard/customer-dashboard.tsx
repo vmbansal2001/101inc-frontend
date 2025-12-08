@@ -1,9 +1,11 @@
-import useUserData from "../../../components/use-user-data/use-user-data";
-import CustomerNavbar from "../../../components/navbar/customer-navbar";
+"use client";
+
+import useUserData from "../../components/use-user-data/use-user-data";
+import CustomerNavbar from "../../components/navbar/customer-navbar";
 import HowItWorks from "./how-it-works";
 import WhyChooseUs from "./why-choose-us";
 import ServicesWeOffer from "./services-we-offer";
-import Footer from "../../../components/footer/footer";
+import Footer from "../../components/footer/footer";
 import MyBookingsNavigation from "./my-bookings-navigation";
 
 const CustomerDashboard = () => {

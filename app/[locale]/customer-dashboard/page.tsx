@@ -1,12 +1,12 @@
 import PrivateRouteWrapper from "@/src/components/private-route-wrapper/private-route-wrapper";
 import RoleBasedWrapper from "@/src/components/role-based-wrapper";
-import ItemManagementRoute from "@/src/views/admin/item-management-route/item-management-route";
+import CustomerDashboard from "@/src/views/customer-dashboard/customer-dashboard";
 
 const Page = () => {
   return (
     <PrivateRouteWrapper>
-      <RoleBasedWrapper allowedRoles={["ADMIN"]}>
-        <ItemManagementRoute />
+      <RoleBasedWrapper allowedRoles={["CUSTOMER"]}>
+        <CustomerDashboard />
       </RoleBasedWrapper>
     </PrivateRouteWrapper>
   );

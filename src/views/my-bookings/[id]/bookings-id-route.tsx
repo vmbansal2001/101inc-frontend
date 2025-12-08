@@ -1,7 +1,6 @@
 "use client";
 
 import CustomerNavbar from "@/src/components/navbar/customer-navbar";
-import useUserData from "@/src/components/use-user-data/use-user-data";
 import BookingIdContainer from "./booking-id-container";
 
 type Props = {
@@ -9,22 +8,11 @@ type Props = {
 };
 
 const BookingsIdRoute = ({ id }: Props) => {
-  const { userData } = useUserData();
-
-  if (userData.role !== "CUSTOMER") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        You are not authorized to access this page
-      </div>
-    );
-  }
-
   return (
-    <div className="">
+    <main>
       <CustomerNavbar />
-
       <BookingIdContainer id={id} />
-    </div>
+    </main>
   );
 };
 
