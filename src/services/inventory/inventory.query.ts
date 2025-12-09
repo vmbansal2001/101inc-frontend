@@ -81,6 +81,15 @@ export const inventoryApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["InventoryGarage"],
     }),
+
+    postInventoryUseItem: builder.mutation<unknown | null, { body: unknown }>({
+      query: ({ body }) => ({
+        url: `/api/v1/inventory/use_item`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["InventoryGarage"],
+    }),
   }),
 });
 
@@ -96,4 +105,5 @@ export const {
   useLazyGetInventoryGarageByIdQuery,
   usePostInventoryMutation,
   usePostInventoryAddItemMutation,
+  usePostInventoryUseItemMutation,
 } = inventoryApi;

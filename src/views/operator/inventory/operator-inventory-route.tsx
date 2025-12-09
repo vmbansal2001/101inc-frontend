@@ -1,10 +1,10 @@
 "use client";
 
 import OperatorNavbar from "@/src/components/navbar/operator-navbar";
-import OperatorTicketsContainer from "./operator-tickets-container/operator-tickets-container";
 import OperatorRouteSwitcher from "../operator-route-switcher";
+import OperatorInventoryContainer from "./operator-inventory-container/operator-inventory-container";
 
-const OperatorTicketsRoute = () => {
+const OperatorInventoryRoute = () => {
   return (
     <main>
       <OperatorNavbar />
@@ -12,17 +12,16 @@ const OperatorTicketsRoute = () => {
         <OperatorRouteSwitcher />
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-            Ticket Management
+            Inventory Management
           </h1>
           <p className="text-gray-600 font-medium">
-            Monitor and manage all service tickets.
+            Manage your inventory and stock levels.
           </p>
         </div>
-
-        <OperatorTicketsContainer />
+        <OperatorInventoryContainer />
       </div>
     </main>
   );
 };
 
-export default OperatorTicketsRoute;
+export default OperatorInventoryRoute;
