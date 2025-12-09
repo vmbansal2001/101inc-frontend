@@ -1,11 +1,14 @@
 import PrivateRouteWrapper from "@/src/components/private-route-wrapper/private-route-wrapper";
+import RoleBasedWrapper from "@/src/components/role-based-wrapper";
 import GarageManagementRoute from "@/src/views/admin/garage-management/garage-management-route";
-import React from "react";
 
 const Page = () => {
   return (
     <PrivateRouteWrapper>
-      <GarageManagementRoute />
+      {/* TODO: Replace mechanic role with admin role */}
+      <RoleBasedWrapper allowedRoles={["MECHANIC"]}>
+        <GarageManagementRoute />
+      </RoleBasedWrapper>
     </PrivateRouteWrapper>
   );
 };
