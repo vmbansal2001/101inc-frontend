@@ -5,8 +5,7 @@ import GarageManagementRoute from "@/src/views/admin/garage-management/garage-ma
 const Page = () => {
   return (
     <PrivateRouteWrapper>
-      {/* TODO: Replace mechanic role with admin role */}
-      <RoleBasedWrapper allowedRoles={["MECHANIC"]}>
+      <RoleBasedWrapper allowedRoles={["ADMIN"]}>
         <GarageManagementRoute />
       </RoleBasedWrapper>
     </PrivateRouteWrapper>
