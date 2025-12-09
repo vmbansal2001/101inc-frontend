@@ -1,18 +1,26 @@
-"use client";
-
 import PrivateRouteWrapper from "@/src/components/private-route-wrapper/private-route-wrapper";
 import RoleBasedWrapper from "@/src/components/role-based-wrapper";
 import GarageManagementIdRoute from "@/src/views/admin/garage-management/[id]/garage-management-id-route";
-import { useParams } from "next/navigation";
-import React from "react";
+import type { Metadata } from "next";
 
-const Page = () => {
-  const { id } = useParams();
+type Props = {
+  params: Promise<{ id: string; locale: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  return {
+    title: `Admin | Garage ${id}`,
+  };
+}
+
+const Page = async ({ params }: Props) => {
+  const { id } = await params;
 
   return (
     <PrivateRouteWrapper>
       <RoleBasedWrapper allowedRoles={["ADMIN"]}>
-        <GarageManagementIdRoute garageId={id as string} />
+        <GarageManagementIdRoute garageId={id} />
       </RoleBasedWrapper>
     </PrivateRouteWrapper>
   );

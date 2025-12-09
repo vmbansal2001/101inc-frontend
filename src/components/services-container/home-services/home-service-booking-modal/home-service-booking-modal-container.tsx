@@ -85,14 +85,6 @@ const HomeServiceBookingModalContainer = ({
   };
 
   const bookServiceHandler = async () => {
-    if (formData.issueDescription.trim() === "") {
-      setFormErrors((prev) => ({
-        ...prev,
-        issueDescription: "Issue description is required",
-      }));
-      return;
-    }
-
     if (!formData.sharableLocationLink) {
       setFormErrors((prev) => ({
         ...prev,

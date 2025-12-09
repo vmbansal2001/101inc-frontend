@@ -1,3 +1,5 @@
+"use client";
+
 import MechanicNavbar from "@/src/components/navbar/mechanic-navbar";
 import MyTicketsIdContainer from "./my-ticket-id-container/my-tickets-id-container";
 
