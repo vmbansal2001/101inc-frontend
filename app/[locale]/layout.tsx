@@ -8,6 +8,7 @@ import NotificationPermissionHandler from "@/src/components/notification-permiss
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import Analytics from "@/src/components/analytics/Analytics";
+import OfflineDetector from "@/src/components/offline-screen/offline-detector";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -42,10 +43,12 @@ export default async function RootLayout({
         <Analytics />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <StoreProvider>
-            <Authenticator />
-            <Toaster />
-            <NotificationPermissionHandler />
-            {children}
+            <OfflineDetector>
+              <Authenticator />
+              <Toaster />
+              <NotificationPermissionHandler />
+              {children}
+            </OfflineDetector>
           </StoreProvider>
         </NextIntlClientProvider>
       </body>
