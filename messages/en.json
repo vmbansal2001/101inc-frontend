@@ -48,6 +48,7 @@
     "General home repairs, minor installations, and maintenance tasks": "General home repairs, minor installations, and maintenance tasks"
   },
   "status": {
+    "REQUESTED": "Requested",
     "ASSIGNED": "Assigned",
     "APPROVED": "APPROVED",
     "COMPLETED": "Completed",

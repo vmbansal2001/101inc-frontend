@@ -3,6 +3,7 @@ import AddMechanicEstimates from "./add-mechanic-estimates";
 import ShowMechanicEstimates from "./show-mechanic-estimates";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   ticket: Ticket;
@@ -17,6 +18,19 @@ const ServiceDetailsCard = ({ ticket }: Props) => {
 
   return (
     <div className="md:p-5 p-3 rounded-2xl border border-gray-100 shadow-[0_10px_30px_rgba(15,23,42,0.06)] divide-y divide-gray-200 *:py-4 *:first:pt-0 *:last:pb-0 bg-white">
+      {ticket.location_url && (
+        <div>
+          <p className="text-sm text-gray-500 font-medium">Service Location</p>
+          <Link
+            href={ticket.location_url}
+            target="_blank"
+            className="text-blue-600 underline"
+          >
+            {ticket.location_url}
+          </Link>
+        </div>
+      )}
+
       {ticketsArray.length > 0 && (
         <div className="flex flex-col">
           <p className="text-sm text-gray-500 font-medium">

@@ -48,6 +48,7 @@
     "General home repairs, minor installations, and maintenance tasks": "घरका साधारण मर्मत, साना जडान तथा मर्मत कार्यहरू"
   },
   "status": {
+    "REQUESTED": "अनुरोधित",
     "ASSIGNED": "नियुक्त",
     "APPROVED": "स्वीकृत",
     "COMPLETED": "पूर्ण",
