@@ -6,6 +6,7 @@ import Image from "next/image";
 import { MoonLoader } from "react-spinners";
 import useUserData from "../use-user-data/use-user-data";
 import OnboardingStepOne from "./onboarding-step-one/onborading-step-one";
+import InstallAppButton from "../buttons/install-app-button";
 
 const LoginPage = () => {
   const { userLoading, currentUser } = useAppSelector(
@@ -38,7 +39,10 @@ const LoginPage = () => {
         <div className="absolute inset-0 bg-linear-to-br from-red-900/80 via-rose-800/75 to-slate-900/80" />
       </div>
 
-      {renderContent()}
+      <div className="z-10 flex flex-col items-center gap-4">
+        <InstallAppButton />
+        {renderContent()}
+      </div>
     </div>
   );
 };

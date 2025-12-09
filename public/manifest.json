@@ -3,10 +3,10 @@
   "short_name": "101inc",
   "description": "",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/en",
   "scope": "/",
   "orientation": "portrait",
-  "id": "",
+  "id": "/en",
   "lang": "en",
   "dir": "auto",
   "icons": [
