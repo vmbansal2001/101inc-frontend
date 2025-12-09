@@ -1,3 +1,5 @@
+import Inventory from "../inventory/Inventory";
+
 type InventoryGarage = {
   id: number;
   name: string;
@@ -6,6 +8,7 @@ type InventoryGarage = {
   // latitude: number;
   // longitude: number;
   type: string;
+  inventory?: Inventory[];
 };
 
 export default InventoryGarage;

@@ -2,7 +2,10 @@ import { inventoryItemsTransformer } from "@/src/types/inventory-item/inventory-
 import baseApi from "../base-api";
 import InventoryItem from "@/src/types/inventory-item/InventoryItem";
 import InventoryGarage from "@/src/types/inventory-garage/InventoryGarage";
-import { inventoryGaragesTransformer } from "@/src/types/inventory-garage/inventory-garage.transformer";
+import {
+  inventoryGaragesTransformer,
+  inventoryGarageTransformer,
+} from "@/src/types/inventory-garage/inventory-garage.transformer";
 
 export const inventoryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,6 +23,17 @@ export const inventoryApi = baseApi.injectEndpoints({
       }),
       providesTags: ["InventoryGarage"],
       transformResponse: (response) => inventoryGaragesTransformer(response),
+    }),
+
+    getInventoryGarageById: builder.query<
+      InventoryGarage,
+      { garageId: number }
+    >({
+      query: ({ garageId }) => ({
+        url: `/api/v1/inventory/garages/${garageId}`,
+      }),
+      providesTags: ["InventoryGarage"],
+      transformResponse: (response) => inventoryGarageTransformer(response),
     }),
 
     postInventoryItem: builder.mutation<unknown | null, { body: unknown }>({
@@ -49,6 +63,24 @@ export const inventoryApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+
+    postInventory: builder.mutation<unknown | null, { body: unknown }>({
+      query: ({ body }) => ({
+        url: `/api/v1/inventory/`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["InventoryGarage"],
+    }),
+
+    postInventoryAddItem: builder.mutation<unknown | null, { body: unknown }>({
+      query: ({ body }) => ({
+        url: `/api/v1/inventory/add_item`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["InventoryGarage"],
+    }),
   }),
 });
 
@@ -60,4 +92,8 @@ export const {
   useLazyGetInventoryGaragesQuery,
   usePostInventoryGarageMutation,
   usePostInventoryGarageUserMutation,
+  useGetInventoryGarageByIdQuery,
+  useLazyGetInventoryGarageByIdQuery,
+  usePostInventoryMutation,
+  usePostInventoryAddItemMutation,
 } = inventoryApi;

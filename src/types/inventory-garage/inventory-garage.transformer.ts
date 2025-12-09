@@ -1,3 +1,4 @@
+import { inventoriesTransformer } from "../inventory/inventory.transformer";
 import InventoryGarage from "./InventoryGarage";
 
 const inventoryGaragesTransformer = (
@@ -14,6 +15,9 @@ const inventoryGarageTransformer = (inventoryGarage: any): InventoryGarage => {
     name: inventoryGarage.name,
     phone: inventoryGarage.phone,
     type: inventoryGarage.type,
+    inventory: inventoryGarage.inventory
+      ? inventoriesTransformer(inventoryGarage.inventory)
+      : undefined,
   };
 
   return mappedInventoryGarage;
