@@ -28,6 +28,13 @@ const pwaConfig = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
+  fallbacks: {
+    document: "/offline.html",
+    image: "/offline.html",
+    audio: "/offline.html",
+    video: "/offline.html",
+    font: "/offline.html",
+  },
   // disable: process.env.NODE_ENV === "development",
 }) as (config: NextConfig) => NextConfig;
 
