@@ -17,17 +17,21 @@ const MyBookingsNavigation = () => {
   return (
     <section>
       <Link href="/my-bookings" className="group block">
-        <article className="flex items-center justify-between rounded-2xl border border-blue-100 bg-blue-50/60 px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:shadow-md sm:px-5 sm:py-4">
+        <article className="flex flex-col gap-3 rounded-2xl border border-blue-100 bg-blue-50/60 px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:shadow-md sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:px-5 sm:py-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm sm:h-11 sm:w-11">
-              <CalendarClock size={20} strokeWidth={2.4} />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm sm:h-11 sm:w-11">
+              <CalendarClock
+                size={20}
+                strokeWidth={2.4}
+                className="sm:w-5 sm:h-5"
+              />
             </div>
 
-            <div className="space-y-0.5">
+            <div className="space-y-0.5 min-w-0 flex-1">
               <p className="text-sm font-semibold text-gray-900 sm:text-[15px]">
                 View my bookings
               </p>
-              <p className="text-xs font-medium text-gray-600">
+              <p className="text-xs font-medium text-gray-600 line-clamp-2">
                 {isLoading
                   ? "Loading your recent bookings..."
                   : "Check status, reschedule, or book again in a few taps."}
@@ -35,8 +39,8 @@ const MyBookingsNavigation = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-end gap-1 text-xs font-semibold text-blue-700">
-            <span className="inline-flex items-center gap-1">
+          <div className="flex flex-row items-center justify-between gap-2 text-xs font-semibold text-blue-700 sm:flex-col sm:items-end sm:gap-1 sm:shrink-0">
+            <span className="inline-flex items-center gap-1 whitespace-nowrap">
               Go to bookings
               <span
                 aria-hidden="true"
@@ -47,7 +51,7 @@ const MyBookingsNavigation = () => {
             </span>
 
             {tickets && tickets.length > 0 && (
-              <span className="rounded-full bg-white/80 px-2 py-0.5 text-[11px] font-semibold text-blue-700 shadow-sm">
+              <span className="rounded-full bg-white/80 px-2 py-0.5 text-[11px] font-semibold text-blue-700 shadow-sm whitespace-nowrap">
                 {tickets.length}{" "}
                 {tickets.length === 1
                   ? "active or past booking"
