@@ -17,7 +17,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "101 Inc",
   description: "101 Inc",
-  manifest: "/manifest.json",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({
@@ -38,6 +45,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         <Analytics />
         <NextIntlClientProvider locale={locale} messages={messages}>
