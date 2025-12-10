@@ -14,8 +14,7 @@ const Page = (props: Props) => {
   return (
     <PrivateRouteWrapper>
       <RoleBasedWrapper allowedRoles={["OPERATOR"]}>
-        Page
-        {/* <OperatorInventoryRoute /> */}
+        <OperatorInventoryRoute />
       </RoleBasedWrapper>
     </PrivateRouteWrapper>
   );

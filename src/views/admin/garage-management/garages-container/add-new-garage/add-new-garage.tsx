@@ -86,7 +86,7 @@ const AddNewGarage = () => {
 
       if (isUserNotFound) {
         const created = await createUser({
-          body: { full_name: fullName, phone: phoneNumber },
+          body: { full_name: fullName, phone: phoneNumber, role: "OPERATOR" },
         }).unwrap();
 
         const createdId = created?.id;
