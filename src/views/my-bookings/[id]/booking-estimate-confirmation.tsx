@@ -3,6 +3,8 @@ import { usePutEstimateMutation } from "@/src/services/estimate/estimate.query";
 import Ticket from "@/src/types/ticket/Ticket";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
+import PaymentQrCodeImage from "@/src/assets/images/payment-qr.jpeg";
 
 type Props = {
   ticket: Ticket;
@@ -89,7 +91,7 @@ const BookingEstimateConfirmation = ({ ticket }: Props) => {
   };
 
   return (
-    <section className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm md:p-6">
+    <section className="rounded-2xl space-y-6 border border-gray-100 bg-white p-4 shadow-sm md:p-6">
       <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
         <div>
           <h2 className="text-lg font-semibold tracking-tight text-gray-900 md:text-xl">
@@ -102,7 +104,7 @@ const BookingEstimateConfirmation = ({ ticket }: Props) => {
         </div>
       </div>
 
-      <div className="mt-6 space-y-4">
+      <div className="space-y-4">
         {ticket.estimates.map((estimate) => {
           const statusStyles = getStatusStyles(estimate.status);
 
@@ -157,6 +159,30 @@ const BookingEstimateConfirmation = ({ ticket }: Props) => {
           );
         })}
       </div>
+
+      {ticket.status === "WORK_IN_PROGRESS" && (
+        <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-4 md:p-5">
+          <div className="mb-4">
+            <h3 className="text-base font-semibold text-gray-900 md:text-lg">
+              Payment Collection
+            </h3>
+            <p className="mt-1 text-xs text-gray-500 md:text-sm">
+              Scan the QR code below to complete your payment
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+              <Image
+                src={PaymentQrCodeImage}
+                alt="Payment QR Code"
+                className="h-auto w-full max-w-xs rounded-md"
+                width={300}
+                height={300}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
