@@ -6,6 +6,8 @@ const OperatorRouteSwitcher = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  return <></>;
+
   const routes = [
     {
       path: "/operator/tickets",
