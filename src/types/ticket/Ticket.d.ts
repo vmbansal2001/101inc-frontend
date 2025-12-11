@@ -23,6 +23,7 @@ type Ticket = {
   customer_id: number;
   customer: User;
   requested_at: string;
+  location_url: string | null;
 };
 
 export default Ticket;

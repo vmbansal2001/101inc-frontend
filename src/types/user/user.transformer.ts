@@ -15,6 +15,12 @@ const userTransformer = (user: any): User => {
     role: user.role || "",
     service_type_ids: user.service_type_ids || [],
     mechanic_services: user.mechanic_services || [],
+    garage_users:
+      user?.garage_users?.map((garage_user: any) => ({
+        user_id: garage_user.user_id,
+        id: garage_user.id,
+        garage_id: garage_user.garage_id,
+      })) || undefined,
   };
 };
 

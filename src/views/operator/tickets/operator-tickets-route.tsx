@@ -1,24 +1,15 @@
 "use client";
 
 import OperatorNavbar from "@/src/components/navbar/operator-navbar";
-import useUserData from "@/src/components/use-user-data/use-user-data";
 import OperatorTicketsContainer from "./operator-tickets-container/operator-tickets-container";
+import OperatorRouteSwitcher from "../operator-route-switcher";
 
 const OperatorTicketsRoute = () => {
-  const { userData } = useUserData();
-
-  if (userData.role !== "OPERATOR") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        You are not authorized to access this page
-      </div>
-    );
-  }
-
   return (
-    <div>
+    <main>
       <OperatorNavbar />
       <div className="common-frame-box py-10 space-y-6">
+        <OperatorRouteSwitcher />
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
             Ticket Management
@@ -30,7 +21,7 @@ const OperatorTicketsRoute = () => {
 
         <OperatorTicketsContainer />
       </div>
-    </div>
+    </main>
   );
 };
 

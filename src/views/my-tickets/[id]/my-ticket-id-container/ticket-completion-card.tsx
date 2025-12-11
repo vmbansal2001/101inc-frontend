@@ -3,8 +3,10 @@ import { usePatchTicketByIdMutation } from "@/src/services/tickets/tickets.query
 import Ticket from "@/src/types/ticket/Ticket";
 import { InfoIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import PaymentQrCodeImage from "@/src/assets/images/payment-qr.jpeg";
 
 type Props = {
   ticket: Ticket;
@@ -51,6 +53,28 @@ const TicketCompletionCard = ({ ticket }: Props) => {
           <p className="text-sm font-semibold text-gray-900">
             {t("markAsCompleteDescription")}
           </p>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-4 md:p-5">
+        <div className="mb-4">
+          <h3 className="text-base font-semibold text-gray-900 md:text-lg">
+            {t("paymentCollection")}
+          </h3>
+          <p className="mt-1 text-xs text-gray-500 md:text-sm">
+            {t("showQrCodeToCustomer")}
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+            <Image
+              src={PaymentQrCodeImage}
+              alt="Payment QR Code"
+              className="h-auto w-full max-w-xs rounded-md"
+              width={300}
+              height={300}
+            />
+          </div>
         </div>
       </div>
 

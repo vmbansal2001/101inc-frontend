@@ -2,6 +2,7 @@ import Ticket from "@/src/types/ticket/Ticket";
 import React from "react";
 import AlreadyAssignedMechanic from "./already-assigned-mechanic";
 import AssignNewMechanic from "./assign-new-mechanic";
+import Link from "next/link";
 
 type Props = {
   ticket: Ticket;
@@ -23,6 +24,19 @@ const TicketDetailsContainerModal = ({ ticket, onClose }: Props) => {
           {ticket.status}
         </div>
       </div>
+
+      {ticket.location_url && (
+        <div className="w-full">
+          <p className="text-sm text-gray-500">Service Location</p>
+          <Link
+            href={ticket.location_url}
+            target="_blank"
+            className="text-blue-600 underline text-sm font-medium"
+          >
+            {ticket.location_url}
+          </Link>
+        </div>
+      )}
 
       <div className="flex gap-2">
         <div className="md:w-1/2 w-full">

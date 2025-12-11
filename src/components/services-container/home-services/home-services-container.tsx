@@ -8,7 +8,7 @@ const HomeServicesContainer = () => {
   );
 
   return (
-    <div>
+    <div className="common-frame-box py-10 space-y-10 h-full">
       <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
         Home Services
       </h1>

@@ -29,7 +29,9 @@
     "markAsCompleteDescription": "काम सम्पन्न भएको पुष्टि गर्न टिकटलाई पूर्ण भएको रूपमा चिन्ह लगाउनुहोस्।",
     "noticePaymentReceived": "कृपया ध्यान दिनुहोस्, टिकट पूर्ण गरिएको अर्थ ग्राहकले सेवा शुल्क तिरेको र तपाईंले भुक्तानी प्राप्त गरिसक्नुभएको हुन्छ।",
     "markAsComplete": "पूर्ण भएको रूपमा चिन्ह लगाउनुहोस्",
-    "thisActionCannotBeUndone": "एक पटक पुष्टि भएपछि यो कार्य तपाईंको तर्फबाट पूर्ववत् गर्न सकिँदैन।"
+    "thisActionCannotBeUndone": "एक पटक पुष्टि भएपछि यो कार्य तपाईंको तर्फबाट पूर्ववत् गर्न सकिँदैन।",
+    "paymentCollection": "भुक्तानी संग्रह",
+    "showQrCodeToCustomer": "ग्राहकलाई भुक्तानी पूर्ण गर्न यो QR कोड देखाउनुहोस्"
   },
   "services": {
     "Bike Repair": "बाइक मर्मत",
@@ -48,6 +50,7 @@
     "General home repairs, minor installations, and maintenance tasks": "घरका साधारण मर्मत, साना जडान तथा मर्मत कार्यहरू"
   },
   "status": {
+    "REQUESTED": "अनुरोधित",
     "ASSIGNED": "नियुक्त",
     "APPROVED": "स्वीकृत",
     "COMPLETED": "पूर्ण",
