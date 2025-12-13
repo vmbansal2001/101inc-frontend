@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { Copy, Loader2, LocateFixed, MapPin, RefreshCcw } from "lucide-react";
+import {
+  Copy,
+  Loader2,
+  LocateFixed,
+  MapPin,
+  RefreshCcw,
+  Search,
+} from "lucide-react";
 
 export type LocationDetails = {
   latitude: number;
@@ -21,6 +28,14 @@ type Landmark = {
 type Coordinates = {
   latitude: number;
   longitude: number;
+};
+
+type SearchResult = {
+  name: string;
+  displayName: string;
+  latitude: number;
+  longitude: number;
+  address?: string;
 };
 
 type LocationPickerProps = {
@@ -98,6 +113,16 @@ const LocationPicker = ({
 
   // Debounce timer for landmarks fetch
   const landmarksDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searchStatus, setSearchStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [searchError, setSearchError] = useState("");
+  const searchDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const searchAbortControllerRef = useRef<AbortController | null>(null);
 
   const emitLocationDetails = useCallback(
     (latitude: number, longitude: number, link: string) => {
@@ -392,6 +417,106 @@ const LocationPicker = ({
     };
   }, [coordinates]);
 
+  // Geocoding search (Nominatim) with debounce
+  useEffect(() => {
+    if (searchDebounceTimerRef.current) {
+      clearTimeout(searchDebounceTimerRef.current);
+    }
+    // Clear results for short queries
+    if (searchQuery.trim().length < 3) {
+      setSearchResults([]);
+      setSearchStatus("idle");
+      setSearchError("");
+      return;
+    }
+
+    searchDebounceTimerRef.current = setTimeout(() => {
+      // Abort previous request if any
+      if (searchAbortControllerRef.current) {
+        searchAbortControllerRef.current.abort();
+      }
+      const controller = new AbortController();
+      searchAbortControllerRef.current = controller;
+
+      const fetchSearch = async () => {
+        try {
+          setSearchStatus("loading");
+          setSearchError("");
+          const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(
+            searchQuery
+          )}&limit=5`;
+
+          const response = await fetch(url, {
+            signal: controller.signal,
+            headers: {
+              "Content-Type": "application/json",
+              // Nominatim usage policy recommends identifying the app
+              "User-Agent": "101inc-frontend/1.0",
+              Referer:
+                typeof window !== "undefined" ? window.location.origin : "",
+            },
+          });
+
+          if (!response.ok) {
+            if (response.status === 429) {
+              throw new Error(
+                "Search rate limit reached. Please wait a moment and try again."
+              );
+            }
+            throw new Error(
+              `Search failed (${response.status}). Please try again.`
+            );
+          }
+
+          const data = (await response.json()) as Array<{
+            display_name?: string;
+            lat?: string;
+            lon?: string;
+            name?: string;
+          }>;
+
+          const results: SearchResult[] =
+            data
+              ?.map<SearchResult | null>((item) => {
+                const lat = item.lat ? Number(item.lat) : undefined;
+                const lon = item.lon ? Number(item.lon) : undefined;
+                if (!lat || !lon) return null;
+                return {
+                  name: item.name ?? item.display_name ?? "Unknown place",
+                  displayName: item.display_name ?? "Unknown place",
+                  latitude: lat,
+                  longitude: lon,
+                  address: item.display_name,
+                };
+              })
+              .filter((r): r is SearchResult => r !== null) ?? [];
+
+          setSearchResults(results);
+          setSearchStatus("success");
+        } catch (err) {
+          if (controller.signal.aborted) return;
+          setSearchStatus("error");
+          setSearchError(
+            err instanceof Error
+              ? err.message
+              : "Unable to search right now. Please try again."
+          );
+        }
+      };
+
+      fetchSearch();
+    }, 400); // 400ms debounce
+
+    return () => {
+      if (searchDebounceTimerRef.current) {
+        clearTimeout(searchDebounceTimerRef.current);
+      }
+      if (searchAbortControllerRef.current) {
+        searchAbortControllerRef.current.abort();
+      }
+    };
+  }, [searchQuery]);
+
   return (
     <section className="space-y-4" aria-label={label ?? "Service location"}>
       <div className="space-y-1">
@@ -405,6 +530,61 @@ const LocationPicker = ({
           {description ??
             "Share your location so the mechanic can reach you quickly."}
         </p>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Search location
+        </label>
+        <div className="relative">
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search address or place"
+            className="w-full rounded-lg border border-gray-200 px-9 py-2 text-sm text-gray-900 shadow-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+          />
+        </div>
+        {searchStatus === "loading" ? (
+          <p className="text-xs text-gray-500">Searching…</p>
+        ) : null}
+        {searchStatus === "error" ? (
+          <p className="text-xs text-red-500">
+            {searchError || "Unable to search right now."}
+          </p>
+        ) : null}
+        {searchStatus === "success" && searchResults.length === 0 ? (
+          <p className="text-xs text-gray-500">No results found.</p>
+        ) : null}
+        {searchResults.length > 0 ? (
+          <div className="space-y-2">
+            {searchResults.map((result) => (
+              <button
+                key={`${result.displayName}-${result.latitude}-${result.longitude}`}
+                type="button"
+                onClick={() => {
+                  setSearchQuery(result.displayName);
+                  setSearchResults([]);
+                  applyCoordinates(result.latitude, result.longitude);
+                }}
+                className="flex w-full items-start gap-3 rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm transition hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+              >
+                <div className="border border-gray-200 rounded-full p-2">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <span className="flex flex-col">
+                  <span className="font-semibold text-gray-900">
+                    {result.name}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {result.address ?? result.displayName}
+                  </span>
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <div className="flex flex-col gap-2">
