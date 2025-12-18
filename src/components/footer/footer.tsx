@@ -19,6 +19,9 @@ const Footer = () => {
             On-demand auto and home repair services. Reliable, transparent, and
             always nearby.
           </p>
+          <p className="text-xs md:text-sm font-medium text-gray-400">
+            Powered by DNY Tech Solutions LLC
+          </p>
         </div>
 
         <p className="text-[11px] md:text-xs text-gray-500">

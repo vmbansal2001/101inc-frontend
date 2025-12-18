@@ -1,15 +1,27 @@
-"use client";
-
 import PrivateRouteWrapper from "@/src/components/private-route-wrapper/private-route-wrapper";
+import RoleBasedWrapper from "@/src/components/role-based-wrapper";
 import MyTicketsIdRoute from "@/src/views/my-tickets/[id]/my-tickets-id-route";
-import { useParams } from "next/navigation";
+import type { Metadata } from "next";
 
-const Page = () => {
-  const { id } = useParams();
+type Props = {
+  params: Promise<{ id: string; locale: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  return {
+    title: `Mechanic Ticket #${id}`,
+  };
+}
+
+const Page = async ({ params }: Props) => {
+  const { id } = await params;
 
   return (
     <PrivateRouteWrapper>
-      <MyTicketsIdRoute id={id as string} />
+      <RoleBasedWrapper allowedRoles={["MECHANIC"]}>
+        <MyTicketsIdRoute id={id} />
+      </RoleBasedWrapper>
     </PrivateRouteWrapper>
   );
 };

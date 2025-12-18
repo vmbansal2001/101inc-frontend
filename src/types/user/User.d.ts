@@ -8,6 +8,11 @@ type User = {
   role: string;
   service_type_ids?: number[];
   mechanic_services?: ServiceType[];
+  garage_users?: {
+    user_id: number;
+    id: number;
+    garage_id: number;
+  }[];
 };
 
 export default User;
